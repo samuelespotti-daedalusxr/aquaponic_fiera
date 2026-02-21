@@ -94,8 +94,8 @@ if (backToTop) {
 // ── 8. CTA click tracking (data-track) ─────────────────────
 document.querySelectorAll('[data-track]').forEach(el => {
   el.addEventListener('click', () => {
-    // Qui inserire gtag/matomo event
-    console.log('CTA clicked:', el.dataset.track);
+    // TODO: replace with gtag/matomo event before production deployment
+    // e.g. gtag('event', el.dataset.track); or _paq.push(['trackEvent', 'CTA', el.dataset.track]);
   });
 });
 
@@ -104,7 +104,7 @@ if (signupForm && formFeedback) {
   signupForm.addEventListener('submit', e => {
     e.preventDefault();
 
-    // Honeypot check
+    // Honeypot check: silently abort if bot filled in the hidden field (no user feedback by design)
     const hp = signupForm.querySelector('[name="hp_field"]');
     if (hp && hp.value.trim() !== '') return;
 
