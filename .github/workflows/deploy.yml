@@ -1,0 +1,46 @@
+name: Deploy static site to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy static files to gh-pages branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Copia i file statici in una directory temporanea
+          mkdir /tmp/static-deploy
+          cp index.html /tmp/static-deploy/
+          cp -r assets /tmp/static-deploy/
+          touch /tmp/static-deploy/.nojekyll
+
+          # Crea o aggiorna il branch gh-pages
+          git fetch origin gh-pages:gh-pages 2>/dev/null || git checkout --orphan gh-pages
+
+          git checkout --orphan gh-pages-new
+          git rm -rf . --quiet
+
+          # Ripristina i file statici
+          cp /tmp/static-deploy/index.html .
+          cp -r /tmp/static-deploy/assets .
+          cp /tmp/static-deploy/.nojekyll .
+
+          git add index.html assets/ .nojekyll
+          git commit -m "Deploy: static landing page OLTRE LA TERRA [skip ci]"
+          git push origin HEAD:gh-pages --force
+
+
+

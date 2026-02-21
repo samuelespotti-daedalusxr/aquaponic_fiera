@@ -94,13 +94,13 @@ if (backToTop) {
   });
 }
 
-// ── 8. CTA click tracking (data-track) ─────────────────────
-document.querySelectorAll('[data-track]').forEach(el => {
+// ── 8. CTA click tracking (data-cta) ─────────────────────
+document.querySelectorAll('[data-cta]').forEach(el => {
   el.addEventListener('click', () => {
-    console.log('CTA clicked:', el.dataset.track);
-    // Qui inserire gtag/matomo event, es:
-    // gtag('event', el.dataset.track);
-    // _paq.push(['trackEvent', 'CTA', el.dataset.track]);
+    const ctaId = el.dataset.cta;
+    console.log('CTA clicked:', ctaId);
+    // GA4: gtag('event', 'cta_click', { cta_id: ctaId });
+    // Matomo: _paq.push(['trackEvent', 'CTA', 'click', ctaId]);
   });
 });
 
@@ -111,7 +111,7 @@ if (signupForm && formFeedback) {
 
     // Honeypot check: silently abort if a bot filled the hidden field.
     // No user feedback is intentional — bots shouldn't know they were detected.
-    const hp = signupForm.querySelector('[name="hp_field"]');
+    const hp = signupForm.querySelector('[name="website"]');
     if (hp && hp.value.trim() !== '') return;
 
     const nome    = signupForm.querySelector('[name="nome"]');
