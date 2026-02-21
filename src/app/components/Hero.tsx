@@ -6,7 +6,7 @@ export function Hero() {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <img
-          src="assets/images/serre-giardini-bologna.jpg"
+          src="assets/serre-giardini-bologna.jpg"
           alt="Vista aerea delle Serre dei Giardini di Bologna, serre di vetro immerse nel verde"
           className="w-full h-full object-cover"
         />
