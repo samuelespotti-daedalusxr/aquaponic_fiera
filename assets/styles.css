@@ -476,11 +476,21 @@ a:hover {
 }
 
 .stat-card {
-  background: white;
+  background: var(--avorio);
+  border: 1px solid var(--verde-salvia);
   border-radius: var(--r-card);
   padding: 2rem 1.5rem;
-  box-shadow: var(--shadow-card);
   text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(183,211,107,0.06);
+  pointer-events: none;
 }
 
 /* stat-card con icona: centra verticalmente */
@@ -737,10 +747,10 @@ a:hover {
 }
 
 .format-card {
-  background: white;
+  background: var(--avorio);
+  border: 1px solid var(--verde-salvia);
   border-radius: var(--r-card);
   padding: 1.75rem 1.5rem;
-  box-shadow: var(--shadow-card);
 }
 
 .format-card-title {
@@ -753,23 +763,19 @@ a:hover {
 
 .format-card p {
   font-size: 0.875rem;
-  color: var(--verde-salvia);
+  color: var(--carbone);
   line-height: 1.5;
 }
 
 /* ── Institutional ── */
 .institutional {
-  background: var(--verde-germoglio);
-}
-
-.institutional h2 {
-  color: var(--verde-bosco) !important;
+  background: var(--avorio);
 }
 
 .institutional p {
   max-width: 720px;
   line-height: 1.7;
-  color: var(--verde-bosco);
+  color: var(--carbone);
 }
 
 /* ── Venue ── */
@@ -808,13 +814,19 @@ a:hover {
 }
 
 .venue-directions ul {
-  list-style: disc;
-  padding-left: 1.25rem;
+  list-style: none;
+  padding-left: 0;
   font-size: 0.875rem;
   color: var(--carbone);
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
+  gap: 0.5rem;
+}
+
+.venue-directions li {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
 }
 
 .venue-maps-link {
@@ -867,8 +879,14 @@ a:hover {
   aspect-ratio: 3/2;
   background: white;
   border-radius: 8px;
-  box-shadow: var(--shadow-card);
-  border: 1px solid rgba(31,61,43,0.08);
+  border: 1px solid var(--verde-salvia);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  color: var(--verde-salvia);
+  font-weight: 500;
+  letter-spacing: 0.04em;
 }
 
 /* ── Signup (dark) ── */
@@ -960,6 +978,7 @@ a:hover {
 /* ── FAQ ── */
 .faq {
   background: var(--avorio);
+  background-image: radial-gradient(circle at 80% 30%, rgba(183,211,107,0.06) 0%, transparent 60%);
 }
 
 /* ── Footer ── */
@@ -1126,56 +1145,12 @@ a:hover {
   background-image: radial-gradient(circle at 60% 50%, rgba(183,211,107,0.07) 0%, transparent 70%);
 }
 
-.stat-card {
-  background: var(--avorio);
-  border: 1px solid var(--verde-salvia);
-  border-radius: var(--r-card);
-  padding: 2rem 1.5rem;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.stat-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(183,211,107,0.06);
-  pointer-events: none;
-}
-
 /* ── About — pattern semi separator ── */
 .about {
   background-image: radial-gradient(circle at 30% 80%, rgba(110,143,116,0.08) 0%, transparent 60%);
 }
 
-/* ── Format cards — border style per spec ── */
-.format-card {
-  background: var(--avorio);
-  border: 1px solid var(--verde-salvia);
-  border-radius: var(--r-card);
-  padding: 1.75rem 1.5rem;
-}
-
-.format-card-title {
-  font-family: var(--font-title);
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--verde-bosco);
-  margin-bottom: 0.5rem;
-}
-
-.format-card p {
-  font-size: 0.875rem;
-  color: var(--carbone);
-  line-height: 1.5;
-}
-
 /* ── Institutional box ── */
-.institutional {
-  background: var(--avorio);
-}
-
 .institutional-box {
   border: 1px solid var(--verde-salvia);
   background: rgba(110,143,116,0.07);
@@ -1190,11 +1165,6 @@ a:hover {
   font-weight: 700;
   color: var(--verde-bosco);
   margin-bottom: 1.25rem;
-}
-
-.institutional p {
-  color: var(--carbone);
-  line-height: 1.7;
 }
 
 /* ── Venue img placeholder ── */
@@ -1215,21 +1185,6 @@ img.venue__img[src="./assets/venue-placeholder.jpg"] + .venue-img-placeholder {
   min-height: 260px;
 }
 
-/* ── Partner logo placeholder — show text ── */
-.partner-logo-placeholder {
-  aspect-ratio: 3/2;
-  background: white;
-  border-radius: 8px;
-  border: 1px solid var(--verde-salvia);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.75rem;
-  color: var(--verde-salvia);
-  font-weight: 500;
-  letter-spacing: 0.04em;
-}
-
 /* ── Link soon (disabled) ── */
 .link-soon {
   color: var(--verde-salvia);
@@ -1243,11 +1198,6 @@ img.venue__img[src="./assets/venue-placeholder.jpg"] + .venue-img-placeholder {
 
 .link-soon:hover {
   color: var(--verde-salvia);
-}
-
-/* ── FAQ section light bg ── */
-.faq {
-  background-image: radial-gradient(circle at 80% 30%, rgba(183,211,107,0.06) 0%, transparent 60%);
 }
 
 /* ── Partners — pattern semi separator ── */
@@ -1269,19 +1219,4 @@ img.venue__img[src="./assets/venue-placeholder.jpg"] + .venue-img-placeholder {
   color: white;
 }
 
-/* ── Venue directions list ── */
-.venue-directions ul {
-  list-style: none;
-  padding-left: 0;
-  font-size: 0.875rem;
-  color: var(--carbone);
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
 
-.venue-directions li {
-  display: flex;
-  gap: 0.5rem;
-  align-items: flex-start;
-}
