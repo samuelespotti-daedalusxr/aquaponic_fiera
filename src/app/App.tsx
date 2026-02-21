@@ -1,3 +1,4 @@
+import { LanguageProvider } from './context/LanguageContext';
 import { Hero } from './components/Hero';
 import { About } from './components/About';
 import { Exhibitors } from './components/Exhibitors';
@@ -9,15 +10,17 @@ import { Footer } from './components/Footer';
 
 export default function App() {
   return (
-    <div className="min-h-screen">
-      <Hero />
-      <About />
-      <Exhibitors />
-      <Workshops />
-      <RoundTables />
-      <EventInfo />
-      <CTA />
-      <Footer />
-    </div>
+    <LanguageProvider>
+      <div className="min-h-screen">
+        <Hero />
+        <About />
+        <Exhibitors />
+        <Workshops />
+        <RoundTables />
+        <EventInfo />
+        <CTA />
+        <Footer />
+      </div>
+    </LanguageProvider>
   );
 }
