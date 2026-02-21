@@ -16,16 +16,31 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Add .nojekyll
-        run: touch .nojekyll
+      - name: Deploy static files to gh-pages branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Deploy to gh-pages branch
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: .
-          exclude_assets: '.github,src,node_modules,*.config.*,package*.json,postcss.config.mjs,DEPLOY.md,ATTRIBUTIONS.md,README.md,guidelines'
-          force_orphan: true
-          enable_jekyll: false
+          # Copia i file statici in una directory temporanea
+          mkdir /tmp/static-deploy
+          cp index.html /tmp/static-deploy/
+          cp -r assets /tmp/static-deploy/
+          touch /tmp/static-deploy/.nojekyll
+
+          # Crea o aggiorna il branch gh-pages
+          git fetch origin gh-pages:gh-pages 2>/dev/null || git checkout --orphan gh-pages
+
+          git checkout --orphan gh-pages-new
+          git rm -rf . --quiet
+
+          # Ripristina i file statici
+          cp /tmp/static-deploy/index.html .
+          cp -r /tmp/static-deploy/assets .
+          cp /tmp/static-deploy/.nojekyll .
+
+          git add index.html assets/ .nojekyll
+          git commit -m "Deploy: static landing page OLTRE LA TERRA [skip ci]"
+          git push origin HEAD:gh-pages --force
+
 
 

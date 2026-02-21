@@ -1,41 +1,46 @@
 # OLTRE LA TERRA — Landing Page
 
-Sito statico **OLTRE LA TERRA** — 8–10 Maggio 2026, Bologna.
+**8–10 Maggio 2026 · Le Serre dei Giardini, Bologna**
 
 ---
 
-## ⚡ Come vedere il nuovo sito — 2 click
+## 🚀 Per vedere il sito online — 3 click
 
-**Il codice aggiornato è pronto ma su un branch separato (PR aperta). Per portarlo su `main`:**
+### 1. Mergia la PR
+👉 **https://github.com/samuelespotti-daedalusxr/aquaponic_fiera/pulls**
+→ Apri la PR → "**Merge pull request**" → "**Confirm merge**"
 
-### → Vai qui e clicca "Merge pull request":
-**https://github.com/samuelespotti-daedalusxr/aquaponic_fiera/pulls**
+Il workflow GitHub Actions parte in automatico e crea il branch `gh-pages` con tutti i file statici.
 
-Dopo il merge:
-1. Il workflow GitHub Actions si avvia automaticamente
-2. Crea un branch `gh-pages` con i file statici
-3. Vai su **Settings → Pages** → Source: `gh-pages` branch → root `/` → Save
-4. Sito live: **https://samuelespotti-daedalusxr.github.io/aquaponic_fiera/**
+### 2. Attiva GitHub Pages (solo la prima volta)
+👉 **https://github.com/samuelespotti-daedalusxr/aquaponic_fiera/settings/pages**
+
+- **Source**: "Deploy from a branch"
+- **Branch**: `gh-pages` / `/ (root)`
+- Clicca **Save**
+
+### 3. Sito live entro 1 minuto
+🌐 **https://samuelespotti-daedalusxr.github.io/aquaponic_fiera/**
 
 ---
 
-## File statici
+## Struttura file
 
-| File | Descrizione |
-|------|-------------|
-| `index.html` | Landing page completa (12 sezioni) |
-| `assets/styles.css` | CSS mobile-first, zero framework |
-| `assets/main.js` | JS vanilla: accordion, form, scroll |
-| `assets/og-image.jpg` | Placeholder OG image (sostituire con 1200×630px) |
-| `assets/serre-giardini-bologna.jpg` | Foto hero (già presente) |
+```
+index.html              ← Landing page (12 sezioni)
+assets/
+  styles.css            ← CSS mobile-first, zero framework
+  main.js               ← JS vanilla
+  og-image.jpg          ← Placeholder OG (sostituire: 1200×630px)
+  serre-giardini-bologna.jpg  ← Foto hero
+.github/workflows/
+  deploy.yml            ← Auto-deploy su gh-pages al merge
+```
 
-## Immagini da sostituire
-
-- **OG image**: `assets/og-image.jpg` → 1200×630px per i social
-- **About**: `assets/about-placeholder.jpg` → foto colture fuori suolo
-- **Venue**: `assets/venue-placeholder.jpg` → foto esterna/interna Le Serre
+## Immagini da aggiornare (opzionale)
+- `assets/og-image.jpg` → sostituire con foto evento 1200×630px
+- `assets/serre-giardini-bologna.jpg` → foto drone Le Serre dei Giardini
+- `assets/venue-placeholder.jpg` → foto venue (da aggiungere)
 
 ## Contatti
-
-Email: oltrelaterra@aquaponicdesign.it
-Organizzazione: Aquaponic Design Srl
+oltrelaterra@aquaponicdesign.it · Aquaponic Design Srl
