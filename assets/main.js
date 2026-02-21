@@ -75,6 +75,9 @@ if ('IntersectionObserver' in window && sections.length) {
         });
       }
     });
+  // rootMargin: top -40% keeps nav from activating too early when section
+  // is only just entering the viewport; bottom -55% ensures the active link
+  // updates as the next section scrolls in from below.
   }, { rootMargin: '-40% 0px -55% 0px' });
 
   sections.forEach(sec => navObserver.observe(sec));
@@ -94,8 +97,10 @@ if (backToTop) {
 // ── 8. CTA click tracking (data-track) ─────────────────────
 document.querySelectorAll('[data-track]').forEach(el => {
   el.addEventListener('click', () => {
-    // TODO: replace with gtag/matomo event before production deployment
-    // e.g. gtag('event', el.dataset.track); or _paq.push(['trackEvent', 'CTA', el.dataset.track]);
+    console.log('CTA clicked:', el.dataset.track);
+    // Qui inserire gtag/matomo event, es:
+    // gtag('event', el.dataset.track);
+    // _paq.push(['trackEvent', 'CTA', el.dataset.track]);
   });
 });
 
@@ -104,7 +109,8 @@ if (signupForm && formFeedback) {
   signupForm.addEventListener('submit', e => {
     e.preventDefault();
 
-    // Honeypot check: silently abort if bot filled in the hidden field (no user feedback by design)
+    // Honeypot check: silently abort if a bot filled the hidden field.
+    // No user feedback is intentional — bots shouldn't know they were detected.
     const hp = signupForm.querySelector('[name="hp_field"]');
     if (hp && hp.value.trim() !== '') return;
 
