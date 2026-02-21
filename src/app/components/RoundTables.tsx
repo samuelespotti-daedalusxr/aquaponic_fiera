@@ -14,16 +14,19 @@ const translations = {
         title: "Il Futuro dell'Agricoltura Urbana",
         description: 'Discussione sulle sfide e opportunità della produzione alimentare nelle città',
         date: '15 Maggio',
+        panelists: ["CEO GreenCity", "Ricercatore UniMI", "Fondatore UrbanGrow", "Investitore Impact"],
       },
       {
         title: 'Sostenibilità e Profitto: Un Binomio Possibile?',
         description: 'Come costruire business model redditizi mantenendo l\'impatto ambientale positivo',
         date: '16 Maggio',
+        panelists: ["CFO EcoVentures", "Startup Founder", "Angel Investor", "Sustainability Expert"],
       },
       {
         title: 'Tecnologia e Natura: La Nuova Sinergia',
         description: "L'integrazione di AI, IoT e biotecnologie per un'agricoltura innovativa",
         date: '17 Maggio',
+        panelists: ["CTO AgriTech", "Biologo", "Data Scientist", "Product Designer"],
       },
     ],
   },
@@ -39,16 +42,19 @@ const translations = {
         title: 'The Future of Urban Agriculture',
         description: 'Discussion on the challenges and opportunities of food production in cities',
         date: 'May 15',
+        panelists: ["CEO GreenCity", "UniMI Researcher", "UrbanGrow Founder", "Impact Investor"],
       },
       {
         title: 'Sustainability and Profit: A Possible Combination?',
         description: 'How to build profitable business models while maintaining a positive environmental impact',
         date: 'May 16',
+        panelists: ["CFO EcoVentures", "Startup Founder", "Angel Investor", "Sustainability Expert"],
       },
       {
         title: 'Technology and Nature: The New Synergy',
         description: 'The integration of AI, IoT and biotechnologies for innovative agriculture',
         date: 'May 17',
+        panelists: ["CTO AgriTech", "Biologist", "Data Scientist", "Product Designer"],
       },
     ],
   },
@@ -61,19 +67,16 @@ export function RoundTables() {
   const sharedData = [
     {
       moderator: "Dr. Elena Fontana",
-      panelists: ["CEO GreenCity", "Ricercatore UniMI", "Fondatore UrbanGrow", "Investitore Impact"],
       time: "15:00 - 17:00",
       image: "https://images.unsplash.com/photo-1697059361419-349e924ed363?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyb3VuZHRhYmxlJTIwZGlzY3Vzc2lvbiUyMGJ1c2luZXNzfGVufDF8fHx8MTc3MTU5NzUyN3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
     },
     {
       moderator: "Prof. Marco Santini",
-      panelists: ["CFO EcoVentures", "Startup Founder", "Angel Investor", "Sustainability Expert"],
       time: "11:00 - 13:00",
       image: "https://images.unsplash.com/photo-1697059361419-349e924ed363?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyb3VuZHRhYmxlJTIwZGlzY3Vzc2lvbiUyMGJ1c2luZXNzfGVufDF8fHx8MTc3MTU5NzUyN3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
     },
     {
       moderator: "Ing. Sara Colombo",
-      panelists: ["CTO AgriTech", "Biologo", "Data Scientist", "Product Designer"],
       time: "14:30 - 16:30",
       image: "https://images.unsplash.com/photo-1697059361419-349e924ed363?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyb3VuZHRhYmxlJTIwZGlzY3Vzc2lvbiUyMGJ1c2luZXNzfGVufDF8fHx8MTc3MTU5NzUyN3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
     },
@@ -129,7 +132,7 @@ export function RoundTables() {
                       {t.panelistsLabel}
                     </p>
                     <div className="flex flex-wrap gap-2">
-                      {sharedData[index].panelists.map((panelist, idx) => (
+                      {table.panelists.map((panelist, idx) => (
                         <span
                           key={idx}
                           className="bg-[#E0F7F4] text-[#00838F] px-3 py-1 rounded-full text-sm"

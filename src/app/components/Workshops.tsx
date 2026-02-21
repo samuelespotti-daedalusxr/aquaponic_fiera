@@ -7,9 +7,9 @@ const translations = {
     title: 'Impara dai migliori',
     description: 'Sessioni pratiche e interattive per acquisire competenze concrete nel settore',
     workshops: [
-      { title: "Introduzione all'Acquaponica", date: '15 Maggio', level: 'Principianti' },
-      { title: 'IoT per Smart Farming', date: '16 Maggio', level: 'Intermedio' },
-      { title: 'Business Model Sostenibile', date: '17 Maggio', level: 'Tutti i livelli' },
+      { title: "Introduzione all'Acquaponica", date: '15 Maggio', level: 'Principianti', duration: '3 ore', capacity: '25 persone' },
+      { title: 'IoT per Smart Farming', date: '16 Maggio', level: 'Intermedio', duration: '4 ore', capacity: '20 persone' },
+      { title: 'Business Model Sostenibile', date: '17 Maggio', level: 'Tutti i livelli', duration: '2.5 ore', capacity: '30 persone' },
     ],
     bookBtn: 'Prenota il posto',
   },
@@ -18,9 +18,9 @@ const translations = {
     title: 'Learn from the best',
     description: 'Practical and interactive sessions to acquire concrete skills in the sector',
     workshops: [
-      { title: 'Introduction to Aquaponics', date: 'May 15', level: 'Beginners' },
-      { title: 'IoT for Smart Farming', date: 'May 16', level: 'Intermediate' },
-      { title: 'Sustainable Business Model', date: 'May 17', level: 'All levels' },
+      { title: 'Introduction to Aquaponics', date: 'May 15', level: 'Beginners', duration: '3 hours', capacity: '25 people' },
+      { title: 'IoT for Smart Farming', date: 'May 16', level: 'Intermediate', duration: '4 hours', capacity: '20 people' },
+      { title: 'Sustainable Business Model', date: 'May 17', level: 'All levels', duration: '2.5 hours', capacity: '30 people' },
     ],
     bookBtn: 'Book your spot',
   },
@@ -31,9 +31,9 @@ export function Workshops() {
   const t = translations[lang];
 
   const workshopData = [
-    { instructor: "Dr. Maria Rossi", duration: "3 ore", capacity: "25 persone", time: "10:00 - 13:00", image: "https://images.unsplash.com/photo-1753162658596-2ccba5e4246a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3b3Jrc2hvcCUyMGNvbGxhYm9yYXRpb24lMjB0ZWFtd29ya3xlbnwxfHx8fDE3NzE1OTc1Mjd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
-    { instructor: "Ing. Luca Bianchi", duration: "4 ore", capacity: "20 persone", time: "14:00 - 18:00", image: "https://images.unsplash.com/photo-1753162658596-2ccba5e4246a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3b3Jrc2hvcCUyMGNvbGxhYm9yYXRpb24lMjB0ZWFtd29ya3xlbnwxfHx8fDE3NzE1OTc1Mjd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
-    { instructor: "Prof. Giovanni Verdi", duration: "2.5 ore", capacity: "30 persone", time: "09:30 - 12:00", image: "https://images.unsplash.com/photo-1753162658596-2ccba5e4246a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3b3Jrc2hvcCUyMGNvbGxhYm9yYXRpb24lMjB0ZWFtd29ya3xlbnwxfHx8fDE3NzE1OTc1Mjd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+    { instructor: "Dr. Maria Rossi", time: "10:00 - 13:00", image: "https://images.unsplash.com/photo-1753162658596-2ccba5e4246a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3b3Jrc2hvcCUyMGNvbGxhYm9yYXRpb24lMjB0ZWFtd29ya3xlbnwxfHx8fDE3NzE1OTc1Mjd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+    { instructor: "Ing. Luca Bianchi", time: "14:00 - 18:00", image: "https://images.unsplash.com/photo-1753162658596-2ccba5e4246a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3b3Jrc2hvcCUyMGNvbGxhYm9yYXRpb24lMjB0ZWFtd29ya3xlbnwxfHx8fDE3NzE1OTc1Mjd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+    { instructor: "Prof. Giovanni Verdi", time: "09:30 - 12:00", image: "https://images.unsplash.com/photo-1753162658596-2ccba5e4246a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3b3Jrc2hvcCUyMGNvbGxhYm9yYXRpb24lMjB0ZWFtd29ya3xlbnwxfHx8fDE3NzE1OTc1Mjd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
   ];
 
   return (
@@ -75,11 +75,11 @@ export function Workshops() {
                   </div>
                   <div className="flex items-center gap-2">
                     <Clock className="w-4 h-4 text-[#00BFA5]" />
-                    <span>{workshopData[index].duration}</span>
+                    <span>{workshop.duration}</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Users className="w-4 h-4 text-[#00BFA5]" />
-                    <span>Max {workshopData[index].capacity}</span>
+                    <span>Max {workshop.capacity}</span>
                   </div>
                 </div>
 
