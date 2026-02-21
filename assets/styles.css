@@ -412,6 +412,24 @@ a:hover {
   margin: 1rem 0 2rem;
 }
 
+.hero-claim {
+  font-family: var(--font-title);
+  font-size: clamp(0.875rem, 1.5vw, 1.1rem);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.9;
+  margin: 0.5rem 0 0;
+}
+
+.hero-claim--italic {
+  font-style: italic;
+  text-transform: none;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  opacity: 0.8;
+}
+
 .hero-horizon {
   width: 60px;
   height: 2px;
@@ -423,6 +441,7 @@ a:hover {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
+  margin-top: 2rem;
   margin-bottom: 1rem;
 }
 
@@ -1180,4 +1199,40 @@ a:hover {
   background-image: radial-gradient(circle, var(--verde-salvia) 1px, transparent 1px);
   background-size: 20px 20px;
   opacity: 0.08;
+}
+
+/* ── Temi Fondamentali ── */
+.temi {
+  background: var(--avorio);
+  border-top: 1px solid rgba(110,143,116,0.2);
+}
+
+.temi h2 {
+  font-family: var(--font-title);
+  font-weight: 700;
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  color: var(--verde-bosco);
+  margin-bottom: 2rem;
+  letter-spacing: -0.01em;
+}
+
+.temi-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.temi-list li {
+  font-family: var(--font-title);
+  font-weight: 600;
+  font-size: clamp(0.875rem, 1.5vw, 1rem);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--carbone);
+  padding: 1.25rem 1.5rem;
+  border: 1px solid rgba(110,143,116,0.25);
+  border-radius: var(--r-card);
+  background: white;
+  box-shadow: var(--shadow-card);
 }
