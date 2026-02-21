@@ -14,8 +14,30 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout feature branch (with static files)
         uses: actions/checkout@v4
+        with:
+          ref: copilot/rewrite-static-landing-page
+          fetch-depth: 0
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Update main with static files
+        run: |
+          git fetch origin main
+          git checkout main
+          # Copy static files from feature branch
+          git checkout copilot/rewrite-static-landing-page -- index.html assets/styles.css assets/main.js assets/og-image.jpg assets/serre-giardini-bologna.jpg
+          # Check if there are changes
+          if git diff --cached --quiet; then
+            echo "Nothing to update on main"
+          else
+            git commit -m "chore: update static landing page from feature branch [skip ci]"
+            git push origin main
+          fi
 
       - name: Add .nojekyll
         run: touch .nojekyll
@@ -28,3 +50,4 @@ jobs:
           exclude_assets: '.github,src,node_modules,*.config.*,package*.json,postcss.config.mjs,DEPLOY.md,ATTRIBUTIONS.md,README.md,guidelines'
           force_orphan: true
           enable_jekyll: false
+
