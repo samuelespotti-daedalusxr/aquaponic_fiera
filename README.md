@@ -1,25 +1,21 @@
 # OLTRE LA TERRA — Landing Page
 
-Sito statico della landing page **OLTRE LA TERRA** (8–10 Maggio 2026, Bologna).
+Sito statico **OLTRE LA TERRA** — 8–10 Maggio 2026, Bologna.
 
 ---
 
-## 👁️ Come vedere il sito live
+## ⚡ Come vedere il nuovo sito — 2 click
 
-### Metodo 1 — Approva il workflow GitHub Actions (consigliato)
+**Il codice aggiornato è pronto ma su un branch separato (PR aperta). Per portarlo su `main`:**
 
-1. Vai su: https://github.com/samuelespotti-daedalusxr/aquaponic_fiera/actions
-2. Clicca sul workflow in attesa → clicca **"Approve and run"**
-3. Aspetta ~30 secondi che finisca (comparirà un branch `gh-pages`)
-4. Vai su: **Settings → Pages → Source → "Deploy from a branch" → branch: `gh-pages` → root `/`**
-5. Clicca **Save**
-6. Sito live: `https://samuelespotti-daedalusxr.github.io/aquaponic_fiera/`
+### → Vai qui e clicca "Merge pull request":
+**https://github.com/samuelespotti-daedalusxr/aquaponic_fiera/pulls**
 
-### Metodo 2 — Mergia la PR (più semplice)
-
-1. Vai sulla PR aperta e clicca **"Merge pull request"**
-2. Vai su: **Settings → Pages → Source → branch: `main` → root `/`**
-3. Sito live: `https://samuelespotti-daedalusxr.github.io/aquaponic_fiera/`
+Dopo il merge:
+1. Il workflow GitHub Actions si avvia automaticamente
+2. Crea un branch `gh-pages` con i file statici
+3. Vai su **Settings → Pages** → Source: `gh-pages` branch → root `/` → Save
+4. Sito live: **https://samuelespotti-daedalusxr.github.io/aquaponic_fiera/**
 
 ---
 
@@ -35,10 +31,9 @@ Sito statico della landing page **OLTRE LA TERRA** (8–10 Maggio 2026, Bologna)
 
 ## Immagini da sostituire
 
-- **Hero**: `assets/serre-giardini-bologna.jpg` → foto drone Le Serre dei Giardini, Bologna
-- **About**: `assets/about-placeholder.jpg` → foto colture fuori suolo (non inclusa)
-- **Venue**: `assets/venue-placeholder.jpg` → foto esterna/interna Le Serre (non inclusa)
-- **OG image**: `assets/og-image.jpg` → immagine 1200×630px per i social
+- **OG image**: `assets/og-image.jpg` → 1200×630px per i social
+- **About**: `assets/about-placeholder.jpg` → foto colture fuori suolo
+- **Venue**: `assets/venue-placeholder.jpg` → foto esterna/interna Le Serre
 
 ## Contatti
 
