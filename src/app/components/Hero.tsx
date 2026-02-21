@@ -1,74 +1,238 @@
 import { ArrowRight } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../i18n/translations';
+
+const IMG_URL = 'assets/serre-giardini-bologna.jpg';
+/* SOSTITUIRE con foto drone de Le Serre dei Giardini — luce naturale, formato landscape */
 
 export function Hero() {
+  const { lang, setLang } = useLanguage();
+  const t = translations[lang].hero;
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image with Overlay */}
+    <section
+      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      style={{ fontFamily: 'Manrope, sans-serif' }}
+    >
+      {/* Background */}
       <div className="absolute inset-0 z-0">
         <img
-          src="assets/serre-giardini-bologna.jpg"
-          alt="Vista aerea delle Serre dei Giardini di Bologna, serre di vetro immerse nel verde"
+          src={IMG_URL}
+          alt="Vista aerea de Le Serre dei Giardini di Bologna"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#1f3d2b]/60 via-[#1f3d2b]/50 to-[#1f3d2b]/70" />
+        {/* Overlay Verde Bosco 58% */}
+        <div className="absolute inset-0" style={{ background: 'rgba(31,61,43,0.58)' }} />
+      </div>
+
+      {/* Language switcher — pill grigio scuro top right */}
+      <div className="absolute top-5 right-6 z-30">
+        <div
+          style={{
+            background: 'rgba(28,31,29,0.82)',
+            borderRadius: '999px',
+            display: 'flex',
+            alignItems: 'center',
+            padding: '6px 18px',
+            backdropFilter: 'blur(6px)',
+          }}
+        >
+          <button
+            onClick={() => setLang('it')}
+            style={{
+              background: 'none',
+              border: 'none',
+              color: lang === 'it' ? '#fff' : 'rgba(255,255,255,0.45)',
+              fontWeight: lang === 'it' ? 700 : 400,
+              fontSize: '13px',
+              cursor: 'pointer',
+              letterSpacing: '0.08em',
+              padding: '0 4px',
+              fontFamily: 'Inter, sans-serif',
+            }}
+            aria-pressed={lang === 'it'}
+          >
+            IT
+          </button>
+          <span style={{ color: 'rgba(255,255,255,0.3)', margin: '0 6px', fontSize: '13px' }}>|</span>
+          <button
+            onClick={() => setLang('en')}
+            style={{
+              background: 'none',
+              border: 'none',
+              color: lang === 'en' ? '#fff' : 'rgba(255,255,255,0.45)',
+              fontWeight: lang === 'en' ? 700 : 400,
+              fontSize: '13px',
+              cursor: 'pointer',
+              letterSpacing: '0.08em',
+              padding: '0 4px',
+              fontFamily: 'Inter, sans-serif',
+            }}
+            aria-pressed={lang === 'en'}
+          >
+            EN
+          </button>
+        </div>
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <p className="text-sm md:text-base text-white/80 uppercase tracking-widest mb-4">
-          Forum Nazionale · Esposizione Innovativa · Masterclass Imprenditoriali
-        </p>
-        <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold text-white mb-4 animate-fade-in tracking-tight">
-          OLTRE LA TERRA
-        </h1>
-        <p className="text-lg md:text-xl text-white/90 mb-2 max-w-3xl mx-auto italic">
-          Dove innovazione tecnologica e agricoltura si incontrano
-        </p>
-        <p className="text-base md:text-lg text-white/80 mb-10 max-w-2xl mx-auto">
-          8–10 Maggio 2026 · Le Serre dei Giardini · Bologna
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-10 text-center">
+        <p
+          style={{
+            fontSize: '11px',
+            letterSpacing: '0.18em',
+            color: 'rgba(255,255,255,0.72)',
+            textTransform: 'uppercase',
+            marginBottom: '28px',
+            fontFamily: 'Inter, sans-serif',
+          }}
+        >
+          {t.subtitle}
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <h1
+          style={{
+            fontSize: 'clamp(52px, 10vw, 120px)',
+            fontWeight: 700,
+            color: '#fff',
+            lineHeight: 1,
+            letterSpacing: '-0.02em',
+            marginBottom: '32px',
+          }}
+        >
+          {t.title}
+        </h1>
+
+        {/* Linea orizzonte */}
+        <div
+          style={{
+            width: '60px',
+            height: '1px',
+            background: 'rgba(183,211,107,0.7)',
+            margin: '0 auto 24px',
+          }}
+        />
+
+        <p
+          style={{
+            fontSize: 'clamp(16px, 2vw, 20px)',
+            color: 'rgba(255,255,255,0.88)',
+            fontStyle: 'italic',
+            marginBottom: '12px',
+            fontFamily: 'Inter, sans-serif',
+          }}
+        >
+          {t.tagline}
+        </p>
+
+        <p
+          style={{
+            fontSize: '15px',
+            color: 'rgba(255,255,255,0.68)',
+            marginBottom: '44px',
+            fontFamily: 'Inter, sans-serif',
+          }}
+        >
+          {t.date}
+        </p>
+
+        <div
+          style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: '14px',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
           <a
-            href="#registrati"
-            className="bg-white text-[#1f3d2b] px-8 py-4 rounded-full hover:bg-[#e8f0e9] transition-all transform hover:scale-105 flex items-center gap-2 font-semibold"
+            href="#programma"
+            data-cta="scopri-programma"
+            style={{
+              background: '#fff',
+              color: '#1F3D2B',
+              border: 'none',
+              borderRadius: '999px',
+              padding: '14px 32px',
+              fontWeight: 700,
+              fontSize: '15px',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '8px',
+              textDecoration: 'none',
+              fontFamily: 'Manrope, sans-serif',
+            }}
           >
-            Scopri il programma
-            <ArrowRight className="w-5 h-5" />
+            {t.cta1}
+            <ArrowRight size={16} />
           </a>
           <a
-            href="#registrati"
-            className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full hover:bg-white/10 transition-all"
+            href="#newsletter"
+            data-cta="registrati"
+            style={{
+              background: 'transparent',
+              color: '#fff',
+              border: '1.5px solid rgba(255,255,255,0.6)',
+              borderRadius: '999px',
+              padding: '14px 32px',
+              fontWeight: 500,
+              fontSize: '15px',
+              textDecoration: 'none',
+              fontFamily: 'Manrope, sans-serif',
+            }}
           >
-            Registrati / Aggiornamenti
+            {t.cta2}
           </a>
         </div>
 
-        {/* Event Stats Pills */}
-        <div className="flex flex-wrap gap-6 justify-center mt-16 text-white">
-          <div className="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full">
-            <p className="opacity-90 font-semibold">40 Espositori</p>
-            <p className="opacity-60 text-xs">Infrastrutture, Tecnologie, Servizi</p>
-          </div>
-          <div className="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full">
-            <p className="opacity-90 font-semibold">3 Giorni</p>
-            <p className="opacity-60 text-xs">di Talk &amp; Incontri</p>
-          </div>
-          <div className="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full">
-            <p className="opacity-90 font-semibold">17 Progetti</p>
-            <p className="opacity-60 text-xs">Demo Day Startup</p>
-          </div>
-          <div className="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full">
-            <p className="opacity-90 font-semibold">Nuova</p>
-            <p className="opacity-60 text-xs">Imprenditorialità Locale</p>
-          </div>
+        {/* Stats pills */}
+        <div
+          style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: '12px',
+            justifyContent: 'center',
+            marginTop: '72px',
+          }}
+        >
+          {[
+            { label: t.stat1Label, sub: t.stat1Sub },
+            { label: t.stat2Label, sub: t.stat2Sub },
+            { label: t.stat3Label, sub: t.stat3Sub },
+            { label: t.stat4Label, sub: t.stat4Sub },
+          ].map((s, i) => (
+            <div
+              key={i}
+              style={{
+                background: 'rgba(255,255,255,0.10)',
+                backdropFilter: 'blur(8px)',
+                border: '1px solid rgba(255,255,255,0.18)',
+                borderRadius: '999px',
+                padding: '10px 24px',
+                textAlign: 'center',
+              }}
+            >
+              <p style={{ color: '#fff', fontWeight: 700, fontSize: '14px', margin: 0 }}>{s.label}</p>
+              <p style={{ color: 'rgba(255,255,255,0.58)', fontSize: '11px', margin: 0 }}>{s.sub}</p>
+            </div>
+          ))}
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
-          <div className="w-1 h-3 bg-white/50 rounded-full mt-2" />
+      {/* Scroll indicator */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+        <div
+          style={{
+            width: '24px',
+            height: '38px',
+            border: '1.5px solid rgba(255,255,255,0.4)',
+            borderRadius: '999px',
+            display: 'flex',
+            justifyContent: 'center',
+            paddingTop: '6px',
+          }}
+        >
+          <div style={{ width: '3px', height: '8px', background: 'rgba(255,255,255,0.4)', borderRadius: '999px' }} />
         </div>
       </div>
     </section>
