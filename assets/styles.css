@@ -170,16 +170,33 @@ a:hover {
   color: white;
 }
 
+/* btn-hero-primary: avorio su sfondo scuro — massima leggibilità */
+.btn-hero-primary {
+  background: var(--avorio);
+  color: var(--verde-bosco);
+  border-color: var(--avorio);
+  font-weight: 600;
+}
+
+.btn-hero-primary:hover {
+  background: #ede9e0;
+  border-color: #ede9e0;
+  color: var(--verde-bosco);
+  transform: translateY(-1px);
+}
+
 .btn-germoglio {
-  background: var(--verde-germoglio);
-  color: var(--carbone);
-  border-color: var(--verde-germoglio);
+  background: var(--avorio);
+  color: var(--verde-bosco);
+  border-color: var(--avorio);
+  font-weight: 600;
 }
 
 .btn-germoglio:hover {
-  background: #a8c55a;
+  background: #ede9e0;
+  border-color: #ede9e0;
   transform: translateY(-1px);
-  color: var(--carbone);
+  color: var(--verde-bosco);
 }
 
 /* ── Header / Nav ── */
@@ -344,6 +361,56 @@ a:hover {
   color: var(--verde-bosco);
 }
 
+/* ── Language Switcher ── */
+.lang-switcher {
+  display: flex;
+  align-items: center;
+  border: 1.5px solid rgba(31,61,43,0.18); /* verde-bosco at 18% opacity */
+  border-radius: var(--r-pill);
+  padding: 3px;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.lang-btn {
+  padding: 0.2rem 0.65rem;
+  border-radius: var(--r-pill);
+  border: none;
+  background: none;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  color: var(--carbone);
+  opacity: 0.45;
+  transition: all var(--t) var(--ease);
+  line-height: 1.4;
+}
+
+.lang-btn:hover {
+  opacity: 0.75;
+}
+
+.lang-btn.active {
+  background: var(--verde-bosco);
+  color: white;
+  opacity: 1;
+}
+
+@media (min-width: 1024px) {
+  .lang-switcher {
+    margin-left: 0.5rem;
+  }
+}
+
+/* On mobile: show inside open nav */
+@media (max-width: 1023px) {
+  .lang-switcher {
+    margin-top: 0.5rem;
+  }
+}
+
 /* ── Sections ── */
 .section {
   padding: 80px 0;
@@ -501,6 +568,19 @@ a:hover {
 
 .stat-number--text {
   font-size: clamp(2rem, 5vw, 3.5rem);
+}
+
+/* Stat card with icon (4th card) */
+.stat-card--icon {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.stat-icon {
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
 }
 
 /* ── About ── */

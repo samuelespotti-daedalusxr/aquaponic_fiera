@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="it" data-lang="it">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -108,14 +108,18 @@
 
       <nav id="main-nav" class="main-nav" aria-label="Navigazione principale">
         <ul class="nav-list">
-          <li><a href="#programma" class="nav-link">Programma</a></li>
-          <li><a href="#format" class="nav-link">Format</a></li>
-          <li><a href="#venue" class="nav-link">Venue</a></li>
-          <li><a href="#partner" class="nav-link">Partner</a></li>
+          <li><a href="#programma" class="nav-link" data-i18n="nav.program">Programma</a></li>
+          <li><a href="#format" class="nav-link" data-i18n="nav.format">Format</a></li>
+          <li><a href="#venue" class="nav-link" data-i18n="nav.venue">Venue</a></li>
+          <li><a href="#partner" class="nav-link" data-i18n="nav.partner">Partner</a></li>
           <li><a href="#faq" class="nav-link">FAQ</a></li>
-          <li><a href="#contatti" class="nav-link">Contatti</a></li>
+          <li><a href="#contatti" class="nav-link" data-i18n="nav.contacts">Contatti</a></li>
         </ul>
-        <a href="#registrati" class="btn btn-primary nav-cta" data-track="cta-nav-registrati">Registrati</a>
+        <a href="#registrati" class="btn btn-primary nav-cta" data-track="cta-nav-registrati" data-i18n="nav.register">Registrati</a>
+        <div class="lang-switcher" role="group" aria-label="Seleziona lingua">
+          <button class="lang-btn active" data-lang="it" aria-pressed="true" aria-label="Italiano">IT</button>
+          <button class="lang-btn" data-lang="en" aria-pressed="false" aria-label="English">EN</button>
+        </div>
       </nav>
     </div>
   </header>
@@ -137,8 +141,8 @@
         <p class="hero-claim">MASTERCLASS IMPRENDITORIALI</p>
         <p class="hero-claim hero-claim--italic">Dove innovazione tecnologica e agricoltura si incontrano</p>
         <div class="hero-actions">
-          <a href="#programma" class="btn btn-primary" data-track="cta-hero-programma">Scopri il programma</a>
-          <a href="#registrati" class="btn btn-outline-light" data-track="cta-hero-registrati">Registrati / Aggiornamenti</a>
+          <a href="#programma" class="btn btn-hero-primary" data-track="cta-hero-programma" data-i18n="hero.cta1">Scopri il programma</a>
+          <a href="#registrati" class="btn btn-outline-light" data-track="cta-hero-registrati" data-i18n="hero.cta2">Registrati / Aggiornamenti</a>
         </div>
         <div class="hero-horizon" aria-hidden="true"></div>
       </div>
@@ -163,8 +167,14 @@
             <div class="stat-label">PROGETTI</div>
             <p class="stat-desc">Presentati al Demo Day Startup</p>
           </article>
-          <article class="stat-card">
-            <div class="stat-number stat-number--text" aria-hidden="true">✦</div>
+          <article class="stat-card stat-card--icon">
+            <div class="stat-icon" aria-hidden="true">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M24 40V24" stroke="#1F3D2B" stroke-width="2" stroke-linecap="round"/>
+                <path d="M24 30C24 30 17 25 13 16C20 14 27 19 24 30Z" fill="#B7D36B" stroke="#1F3D2B" stroke-width="1.5" stroke-linejoin="round"/>
+                <path d="M24 24C24 24 31 19 35 10C28 8 21 13 24 24Z" fill="#6E8F74" stroke="#1F3D2B" stroke-width="1.5" stroke-linejoin="round"/>
+              </svg>
+            </div>
             <div class="stat-label">NUOVA</div>
             <p class="stat-desc">Imprenditorialità e produzioni locali</p>
           </article>
@@ -398,7 +408,7 @@
           <div class="partner-logo-placeholder" aria-label="Logo partner 6"></div>
         </div>
         <div class="partners-cta">
-          <a href="mailto:oltrelaterra@aquaponicdesign.it?subject=Proposta%20partnership%20OLTRE%20LA%20TERRA" class="btn btn-secondary" data-track="cta-diventa-partner">Diventa partner</a>
+          <a href="mailto:oltrelaterra@aquaponicdesign.it?subject=Proposta%20partnership%20OLTRE%20LA%20TERRA" class="btn btn-secondary" data-track="cta-diventa-partner" data-i18n="partners.cta">Diventa partner</a>
         </div>
       </div>
     </section>
@@ -406,19 +416,19 @@
     <!-- ── SIGNUP (dark) ── -->
     <section class="section signup" id="registrati" aria-labelledby="signup-title">
       <div class="container">
-        <h2 id="signup-title">Ricevi aggiornamenti</h2>
-        <p class="signup-lead">Iscriviti per ricevere il programma completo, aggiornamenti e informazioni sull'evento.</p>
+        <h2 id="signup-title" data-i18n="signup.title">Ricevi aggiornamenti</h2>
+        <p class="signup-lead" data-i18n="signup.lead">Iscriviti per ricevere il programma completo, aggiornamenti e informazioni sull'evento.</p>
         <form id="signup-form" class="signup-form" novalidate>
           <div class="form-group">
-            <label for="f-nome" class="form-label">Nome</label>
+            <label for="f-nome" class="form-label" data-i18n="signup.name">Nome</label>
             <input type="text" name="nome" id="f-nome" autocomplete="name" required placeholder="Il tuo nome" class="form-input">
           </div>
           <div class="form-group">
-            <label for="f-email" class="form-label">Email</label>
+            <label for="f-email" class="form-label" data-i18n="signup.email">Email</label>
             <input type="email" name="email" id="f-email" autocomplete="email" required placeholder="La tua email" class="form-input">
           </div>
           <div class="form-group">
-            <label for="f-profilo" class="form-label">Sei…</label>
+            <label for="f-profilo" class="form-label" data-i18n="signup.profile">Sei…</label>
             <select name="profilo" id="f-profilo" required class="form-select">
               <option value="">Seleziona il tuo profilo</option>
               <option value="partecipante">Partecipante</option>
@@ -430,7 +440,7 @@
           </div>
           <!-- Honeypot anti-spam: nascosto via CSS, non compilare -->
           <input type="text" name="hp_field" tabindex="-1" aria-hidden="true" autocomplete="off" class="hp-field">
-          <button type="submit" class="btn btn-germoglio">Iscriviti</button>
+          <button type="submit" class="btn btn-germoglio" data-i18n="signup.submit">Iscriviti</button>
           <div id="form-feedback" role="alert" aria-live="polite" class="form-feedback"></div>
         </form>
       </div>
@@ -551,5 +561,6 @@
   <button class="back-to-top" id="back-to-top" aria-label="Torna all'inizio" hidden>↑</button>
 
   <script src="assets/main.js" defer></script>
+  <script src="assets/i18n.js" defer></script>
 </body>
 </html>
