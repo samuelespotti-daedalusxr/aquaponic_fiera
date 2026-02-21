@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="it" data-lang="it">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -62,35 +62,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="assets/styles.css">
-
-  <!--
-  Analytics — decommentare e configurare:
-  <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'GA_MEASUREMENT_ID');
-  </script>
-  Oppure Matomo:
-  <script>
-    var _paq = window._paq = window._paq || [];
-    _paq.push(['trackPageView']);
-    _paq.push(['enableLinkTracking']);
-    (function() {
-      var u="//MATOMO_URL/";
-      _paq.push(['setTrackerUrl', u+'matomo.php']);
-      _paq.push(['setSiteId', 'SITE_ID']);
-      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-      g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
-    })();
-  </script>
-  -->
 </head>
 <body>
 
   <!-- Skip link accessibilità -->
-  <a href="#main-content" class="skip-link">Vai al contenuto principale</a>
+  <a href="#main-content" class="skip-link" data-i18n="skip">Vai al contenuto principale</a>
 
   <!-- ═══ HEADER / NAV ═══ -->
   <header class="site-header" id="site-header">
@@ -108,14 +84,20 @@
 
       <nav id="main-nav" class="main-nav" aria-label="Navigazione principale">
         <ul class="nav-list">
-          <li><a href="#programma" class="nav-link">Programma</a></li>
-          <li><a href="#format" class="nav-link">Format</a></li>
-          <li><a href="#venue" class="nav-link">Venue</a></li>
-          <li><a href="#partner" class="nav-link">Partner</a></li>
+          <li><a href="#programma" class="nav-link" data-i18n="nav.program">Programma</a></li>
+          <li><a href="#format" class="nav-link" data-i18n="nav.format">Format</a></li>
+          <li><a href="#venue" class="nav-link" data-i18n="nav.venue">Venue</a></li>
+          <li><a href="#partner" class="nav-link" data-i18n="nav.partner">Partner</a></li>
           <li><a href="#faq" class="nav-link">FAQ</a></li>
-          <li><a href="#contatti" class="nav-link">Contatti</a></li>
+          <li><a href="#contatti" class="nav-link" data-i18n="nav.contacts">Contatti</a></li>
         </ul>
-        <a href="#registrati" class="btn btn-primary nav-cta" data-track="cta-nav-registrati">Registrati</a>
+        <a href="#registrati" class="btn btn-primary nav-cta" data-track="cta-nav-registrati" data-i18n="nav.register">Registrati</a>
+        <!-- Language switcher -->
+        <div class="lang-switcher">
+          <button class="lang-btn active" data-lang="it" aria-label="Italiano">IT</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en" aria-label="English">EN</button>
+        </div>
       </nav>
     </div>
   </header>
@@ -130,14 +112,14 @@
         <div class="hero-overlay" aria-hidden="true"></div>
       </div>
       <div class="hero-content container">
-        <p class="hero-eyebrow"><span>Forum Nazionale · Esposizione Innovativa · Masterclass Imprenditoriali</span></p>
+        <p class="hero-eyebrow"><span data-i18n="hero.eyebrow">Forum Nazionale · Esposizione Innovativa · Masterclass Imprenditoriali</span></p>
         <h1 class="hero-title" id="hero-title">OLTRE LA TERRA</h1>
-        <p class="hero-lead"><em>Dove innovazione tecnologica e agricoltura si incontrano</em></p>
-        <p class="hero-date">8–10 Maggio 2026 · Le Serre dei Giardini · Bologna</p>
+        <p class="hero-lead"><em data-i18n="hero.lead">Dove innovazione tecnologica e agricoltura si incontrano</em></p>
         <div class="hero-actions">
-          <a href="#programma" class="btn btn-primary" data-track="cta-hero-programma">Scopri il programma</a>
-          <a href="#registrati" class="btn btn-outline-light" data-track="cta-hero-registrati">Registrati / Aggiornamenti</a>
+          <a href="#programma" class="btn btn-hero-primary" data-track="cta-hero-programma" data-i18n="hero.cta1">Scopri il programma</a>
+          <a href="#registrati" class="btn btn-outline-light" data-track="cta-hero-registrati" data-i18n="hero.cta2">Registrati / Aggiornamenti</a>
         </div>
+        <p class="hero-date" data-i18n="hero.date">8–10 Maggio 2026 · Le Serre dei Giardini · Bologna</p>
         <div class="hero-horizon" aria-hidden="true"></div>
       </div>
     </section>
@@ -148,23 +130,32 @@
         <div class="stats-grid">
           <article class="stat-card">
             <div class="stat-number">40</div>
-            <div class="stat-label">Espositori</div>
-            <p class="stat-desc">Aziende agricole, tecnologie e servizi per le colture fuori suolo.</p>
+            <div class="stat-label" data-i18n="stats.exhibitors.label">Espositori</div>
+            <p class="stat-desc" data-i18n="stats.exhibitors.desc">Aziende agricole, tecnologie e servizi per le colture fuori suolo.</p>
           </article>
           <article class="stat-card">
             <div class="stat-number">3</div>
-            <div class="stat-label">Giorni</div>
-            <p class="stat-desc">Talk, panel, workshop, networking e serate live/dj set.</p>
-          </article>
-          <article class="stat-card --accent">
-            <div class="stat-number">17</div>
-            <div class="stat-label">Progetti Demo Day</div>
-            <p class="stat-desc">Masterclass 2025/26: presentazioni reali, matchmaking e slot 1:1.</p>
+            <div class="stat-label" data-i18n="stats.days.label">Giorni</div>
+            <p class="stat-desc" data-i18n="stats.days.desc">Talk, panel, workshop, networking e serate live/dj set.</p>
           </article>
           <article class="stat-card">
-            <div class="stat-number stat-number--text">Hub</div>
-            <div class="stat-label">Creator Hub</div>
-            <p class="stat-desc">Produzione contenuti, interviste e recap dall'evento.</p>
+            <div class="stat-number">17</div>
+            <div class="stat-label" data-i18n="stats.projects.label">Progetti Demo Day</div>
+            <p class="stat-desc" data-i18n="stats.projects.desc">Masterclass 2025/26: presentazioni reali, matchmaking e slot 1:1.</p>
+          </article>
+          <article class="stat-card stat-card--icon">
+            <div class="stat-icon" aria-hidden="true">
+              <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="26" cy="19" r="8" stroke="#1F3D2B" stroke-width="2" fill="none"/>
+                <path d="M26 27v5" stroke="#1F3D2B" stroke-width="2" stroke-linecap="round"/>
+                <path d="M22 32h8" stroke="#B7D36B" stroke-width="2" stroke-linecap="round"/>
+                <path d="M12 46c0-7.732 6.268-14 14-14s14 6.268 14 14" stroke="#1F3D2B" stroke-width="2" stroke-linecap="round" fill="none"/>
+                <circle cx="40" cy="15" r="5" stroke="#B7D36B" stroke-width="1.5" fill="none"/>
+                <path d="M45 24c0-4.418-2.239-8-5-8" stroke="#B7D36B" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="stat-label" data-i18n="stats.new.label">Nuova Imprenditorialità</div>
+            <p class="stat-desc" data-i18n="stats.new.desc">e Produzioni Locali</p>
           </article>
         </div>
       </div>
@@ -174,33 +165,32 @@
     <section class="section about" id="about" aria-labelledby="about-title">
       <div class="about-inner container">
         <div class="about-text">
-          <h2 id="about-title">Un formato equo, un'esperienza aperta.</h2>
-          <p>OLTRE LA TERRA nasce da un'idea semplice: <strong>l'esperienza è aperta e alla pari.</strong> Tre giorni tra fiera e festival dedicati alle colture fuori suolo, per incontrare aziende agricole e soluzioni tecnologiche, ascoltare voci autorevoli, partecipare a workshop pratici e vedere progetti reali in azione.</p>
-          <p>Abbiamo scelto un formato equo: spazi e visibilità sono uniformi per gli espositori. Il contributo dei partner è finalizzato ad abilitare programmi — talk, workshop, borse, demo, produzione contenuti e reportistica — con <strong>ricadute misurabili sul territorio.</strong></p>
-          <p>Colture fuori suolo: produzione, tecnologia e persone. Dal parlare al fare: demo, workshop, casi reali.</p>
+          <h2 id="about-title" data-i18n="about.title">Un formato equo, un'esperienza aperta.</h2>
+          <p data-i18n="about.p1">OLTRE LA TERRA nasce da un'idea semplice: <strong>l'esperienza è aperta e alla pari.</strong> Tre giorni tra fiera e festival dedicati alle colture fuori suolo, per incontrare aziende agricole e soluzioni tecnologiche, ascoltare voci autorevoli, partecipare a workshop pratici e vedere progetti reali in azione.</p>
+          <p data-i18n="about.p2">Abbiamo scelto un formato equo: spazi e visibilità sono uniformi per gli espositori. Il contributo dei partner è finalizzato ad abilitare programmi — talk, workshop, borse, demo, produzione contenuti e reportistica — con <strong>ricadute misurabili sul territorio.</strong></p>
+          <p data-i18n="about.p3">Colture fuori suolo: produzione, tecnologia e persone. Dal parlare al fare: demo, workshop, casi reali.</p>
           <ul class="value-list">
             <li class="value-item">
               <span class="value-icon" aria-hidden="true">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="#6E8F74" stroke-width="1.5"/><path d="M7 10l2 2 4-4" stroke="#6E8F74" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </span>
-              <span>Programmi abilitati dai partner, con ricadute misurabili sul territorio.</span>
+              <span data-i18n="about.value1">Programmi abilitati dai partner, con ricadute misurabili sul territorio.</span>
             </li>
             <li class="value-item">
               <span class="value-icon" aria-hidden="true">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h12M10 4l6 6-6 6" stroke="#6E8F74" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </span>
-              <span>Dal parlare al fare: demo, workshop, casi reali.</span>
+              <span data-i18n="about.value2">Dal parlare al fare: demo, workshop, casi reali.</span>
             </li>
             <li class="value-item">
               <span class="value-icon" aria-hidden="true">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 10h14M10 3l7 7-7 7" stroke="#6E8F74" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </span>
-              <span>Spazi uniformi per tutti gli espositori: visibilità equa, nessuna gerarchia commerciale.</span>
+              <span data-i18n="about.value3">Spazi uniformi per tutti gli espositori: visibilità equa, nessuna gerarchia commerciale.</span>
             </li>
           </ul>
         </div>
         <div class="about-visual">
-          <!-- IMMAGINE ABOUT: sostituire con foto di colture fuori suolo (acquaponica o idroponica), luce naturale. Formato WebP, 800x1000px. -->
           <div class="about-img-placeholder" role="img" aria-label="Colture fuori suolo in una serra"></div>
         </div>
       </div>
@@ -209,28 +199,28 @@
     <!-- ── WHAT HAPPENS (dark) ── -->
     <section class="section what-happens" id="cosa-succede" aria-labelledby="what-title">
       <div class="container">
-        <h2 id="what-title">Cosa succede in 3 giorni.</h2>
-        <p class="section-lead">Un format progettato per essere utile, non solo interessante.</p>
+        <h2 id="what-title" data-i18n="what.title">Cosa succede in 3 giorni.</h2>
+        <p class="section-lead" data-i18n="what.lead">Un format progettato per essere utile, non solo interessante.</p>
         <div class="what-grid">
           <div class="what-card">
-            <span class="what-tag">Talk &amp; Panel</span>
-            <p>Ricercatori, imprenditori e istituzioni a confronto su produzione, tecnologia e politiche agricole.</p>
+            <span class="what-tag" data-i18n="what.talk.tag">Talk &amp; Panel</span>
+            <p data-i18n="what.talk.desc">Ricercatori, imprenditori e istituzioni a confronto su produzione, tecnologia e politiche agricole.</p>
           </div>
           <div class="what-card">
-            <span class="what-tag">Workshop pratici</span>
-            <p>Laboratori hands-on con materiali, impianti e tecnici presenti. Posti limitati.</p>
+            <span class="what-tag" data-i18n="what.workshop.tag">Workshop pratici</span>
+            <p data-i18n="what.workshop.desc">Laboratori hands-on con materiali, impianti e tecnici presenti. Posti limitati.</p>
           </div>
           <div class="what-card">
-            <span class="what-tag">Creator Hub</span>
-            <p>Spazio per produzione contenuti: interviste, video, recap e distribuzione.</p>
+            <span class="what-tag" data-i18n="what.creator.tag">Creator Hub</span>
+            <p data-i18n="what.creator.desc">Spazio per produzione contenuti: interviste, video, recap e distribuzione.</p>
           </div>
           <div class="what-card">
-            <span class="what-tag">Serate live / DJ set</span>
-            <p>Dalle 19, ogni sera. Musica, networking e cibo in spazio aperto.</p>
+            <span class="what-tag" data-i18n="what.serate.tag">Serate live / DJ set</span>
+            <p data-i18n="what.serate.desc">Dalle 19, ogni sera. Musica, networking e cibo in spazio aperto.</p>
           </div>
           <div class="what-card what-card--wide">
-            <span class="what-tag">Demo Day</span>
-            <p>17 progetti della Masterclass 2025/26 presentati al pubblico. Matchmaking e slot 1:1 su prenotazione.</p>
+            <span class="what-tag" data-i18n="what.demo.tag">Demo Day</span>
+            <p data-i18n="what.demo.desc">17 progetti della Masterclass 2025/26 presentati al pubblico. Matchmaking e slot 1:1 su prenotazione.</p>
           </div>
         </div>
       </div>
@@ -239,84 +229,84 @@
     <!-- ── SCHEDULE ── -->
     <section class="section schedule" id="programma" aria-labelledby="schedule-title">
       <div class="container">
-        <h2 id="schedule-title">Programma</h2>
+        <h2 id="schedule-title" data-i18n="schedule.title">Programma</h2>
         <div class="accordion">
           <div class="accordion-item">
             <button class="accordion-trigger" aria-expanded="false" aria-controls="day-1">
-              <span>Venerdì 8 Maggio</span>
+              <span data-i18n="schedule.day1">Venerdì 8 Maggio</span>
               <span class="accordion-icon" aria-hidden="true">▾</span>
             </button>
             <div class="accordion-panel" id="day-1" hidden>
               <ul class="schedule-list">
-                <li>Apertura ufficiale</li>
-                <li>Expo aperta al pubblico</li>
-                <li>Talk e panel</li>
-                <li>Workshop</li>
-                <li>Serata live</li>
+                <li data-i18n="schedule.day1.1">Apertura ufficiale</li>
+                <li data-i18n="schedule.day1.2">Expo aperta al pubblico</li>
+                <li data-i18n="schedule.day1.3">Talk e panel</li>
+                <li data-i18n="schedule.day1.4">Workshop</li>
+                <li data-i18n="schedule.day1.5">Serata live</li>
               </ul>
             </div>
           </div>
           <div class="accordion-item">
             <button class="accordion-trigger" aria-expanded="false" aria-controls="day-2">
-              <span>Sabato 9 Maggio</span>
+              <span data-i18n="schedule.day2">Sabato 9 Maggio</span>
               <span class="accordion-icon" aria-hidden="true">▾</span>
             </button>
             <div class="accordion-panel" id="day-2" hidden>
               <ul class="schedule-list">
-                <li>Expo</li>
-                <li>Workshop</li>
-                <li>Demo Day Masterclass (pomeriggio)</li>
-                <li>Serata DJ set</li>
+                <li data-i18n="schedule.day2.1">Expo</li>
+                <li data-i18n="schedule.day2.2">Workshop</li>
+                <li data-i18n="schedule.day2.3">Demo Day Masterclass (pomeriggio)</li>
+                <li data-i18n="schedule.day2.4">Serata DJ set</li>
               </ul>
             </div>
           </div>
           <div class="accordion-item">
             <button class="accordion-trigger" aria-expanded="false" aria-controls="day-3">
-              <span>Domenica 10 Maggio</span>
+              <span data-i18n="schedule.day3">Domenica 10 Maggio</span>
               <span class="accordion-icon" aria-hidden="true">▾</span>
             </button>
             <div class="accordion-panel" id="day-3" hidden>
               <ul class="schedule-list">
-                <li>Expo</li>
-                <li>Talk</li>
-                <li>Workshop</li>
-                <li>Chiusura ufficiale</li>
+                <li data-i18n="schedule.day3.1">Expo</li>
+                <li data-i18n="schedule.day3.2">Talk</li>
+                <li data-i18n="schedule.day3.3">Workshop</li>
+                <li data-i18n="schedule.day3.4">Chiusura ufficiale</li>
               </ul>
             </div>
           </div>
         </div>
-        <p class="schedule-soon">Programma completo: <span class="tag-soon">presto online</span></p>
+        <p class="schedule-soon" data-i18n="schedule.soon">Programma completo: <span class="tag-soon">presto online</span></p>
       </div>
     </section>
 
     <!-- ── FORMATS ── -->
     <section class="section formats" id="format" aria-labelledby="format-title">
       <div class="container">
-        <h2 id="format-title">Aree e Format</h2>
+        <h2 id="format-title" data-i18n="formats.title">Aree e Format</h2>
         <div class="formats-grid">
           <article class="format-card">
-            <h3 class="format-card-title">Expo</h3>
-            <p>40 espositori su tecnologie, impianti e soluzioni per colture fuori suolo.</p>
+            <h3 class="format-card-title" data-i18n="formats.expo.title">Expo</h3>
+            <p data-i18n="formats.expo.desc">40 espositori su tecnologie, impianti e soluzioni per colture fuori suolo.</p>
           </article>
           <article class="format-card">
-            <h3 class="format-card-title">Talk &amp; Panel</h3>
-            <p>Voci autorevoli tra ricerca, impresa e istituzioni. Confronto aperto.</p>
+            <h3 class="format-card-title" data-i18n="formats.talk.title">Talk &amp; Panel</h3>
+            <p data-i18n="formats.talk.desc">Voci autorevoli tra ricerca, impresa e istituzioni. Confronto aperto.</p>
           </article>
           <article class="format-card">
-            <h3 class="format-card-title">Workshop / Lab</h3>
-            <p>Laboratori pratici con materiali, impianti e tecnici presenti.</p>
+            <h3 class="format-card-title" data-i18n="formats.workshop.title">Workshop / Lab</h3>
+            <p data-i18n="formats.workshop.desc">Laboratori pratici con materiali, impianti e tecnici presenti.</p>
           </article>
           <article class="format-card">
-            <h3 class="format-card-title">Demo Day</h3>
-            <p>17 progetti della Masterclass 2025/26. Matchmaking e slot 1:1 su prenotazione.</p>
+            <h3 class="format-card-title" data-i18n="formats.demo.title">Demo Day</h3>
+            <p data-i18n="formats.demo.desc">17 progetti della Masterclass 2025/26. Matchmaking e slot 1:1 su prenotazione.</p>
           </article>
           <article class="format-card">
-            <h3 class="format-card-title">Creator Hub</h3>
-            <p>Spazio per produzione contenuti: interviste, video, recap e distribuzione.</p>
+            <h3 class="format-card-title" data-i18n="formats.creator.title">Creator Hub</h3>
+            <p data-i18n="formats.creator.desc">Spazio per produzione contenuti: interviste, video, recap e distribuzione.</p>
           </article>
           <article class="format-card">
-            <h3 class="format-card-title">Serate live / DJ set</h3>
-            <p>Dalle 19, ogni sera. Musica, networking e cibo in spazio aperto.</p>
+            <h3 class="format-card-title" data-i18n="formats.serate.title">Serate live / DJ set</h3>
+            <p data-i18n="formats.serate.desc">Dalle 19, ogni sera. Musica, networking e cibo in spazio aperto.</p>
           </article>
         </div>
       </div>
@@ -325,8 +315,8 @@
     <!-- ── INSTITUTIONAL ── -->
     <section class="section institutional" id="istituzionale" aria-labelledby="inst-title">
       <div class="container">
-        <h2 id="inst-title">Tavola Rotonda Istituzionale</h2>
-        <p>OLTRE LA TERRA propone una tavola rotonda con istituzioni, associazioni di categoria, imprese e ricerca: un confronto concreto su sovranità alimentare, resilienza produttiva e innovazione tecnologica applicata alle colture fuori suolo in Italia (standard, filiere, ricerca, competenze, investimenti e modelli sostenibili).</p>
+        <h2 id="inst-title" data-i18n="inst.title">Tavola Rotonda Istituzionale</h2>
+        <p id="inst.desc">OLTRE LA TERRA propone una tavola rotonda con istituzioni, associazioni di categoria, imprese e ricerca: un confronto concreto su sovranità alimentare, resilienza produttiva e innovazione tecnologica applicata alle colture fuori suolo in Italia.</p>
       </div>
     </section>
 
@@ -334,25 +324,21 @@
     <section class="section venue" id="venue" aria-labelledby="venue-title">
       <div class="venue-inner container">
         <div class="venue-info">
-          <h2 id="venue-title">Dove siamo</h2>
+          <h2 id="venue-title" data-i18n="venue.title">Dove siamo</h2>
           <address>
             <p>Le Serre dei Giardini<br>Via Castiglione 134<br>40124 Bologna</p>
           </address>
           <div class="venue-directions">
-            <h3>Come arrivare</h3>
+            <h3 data-i18n="venue.how">Come arrivare</h3>
             <ul>
-              <li>A piedi o in bici dal centro di Bologna (15 minuti)</li>
-              <li>Bus linee: 13, 14, 19 — fermata Giardini Margherita</li>
-              <li>Auto: attenzione alla ZTL. Parcheggio in Via Murri o Via Toscana</li>
+              <li data-i18n="venue.dir1">A piedi o in bici dal centro di Bologna (15 minuti)</li>
+              <li data-i18n="venue.dir2">Bus linee: 13, 14, 19 — fermata Giardini Margherita</li>
+              <li data-i18n="venue.dir3">Auto: attenzione alla ZTL. Parcheggio in Via Murri o Via Toscana</li>
             </ul>
           </div>
-          <a href="https://maps.google.com/?q=Via+Castiglione+134+Bologna" target="_blank" rel="noopener noreferrer" class="venue-maps-link">Apri in Google Maps →</a>
+          <a href="https://maps.google.com/?q=Via+Castiglione+134+Bologna" target="_blank" rel="noopener noreferrer" class="venue-maps-link" data-i18n="venue.maps">Apri in Google Maps →</a>
         </div>
         <div class="venue-map">
-          <!--
-            MAPPA: Sostituire il src dell'iframe con l'URL embed completo generato da Google Maps.
-            Per generarlo: vai su maps.google.com → cerca "Via Castiglione 134, Bologna" → Condividi → Incorpora una mappa → copia l'URL src.
-          -->
           <iframe
             title="Mappa Le Serre dei Giardini, Via Castiglione 134 Bologna"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2845.5!2d11.3517!3d44.4872!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477fd4aad3b6fa75%3A0x0!2sVia+Castiglione+134%2C+40124+Bologna+BO!5e0!3m2!1sit!2sit!4v1716300000000"
@@ -363,7 +349,7 @@
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
           ></iframe>
-          <p class="venue-map-fallback"><a href="https://maps.google.com/?q=Via+Castiglione+134+Bologna" target="_blank" rel="noopener noreferrer">Apri mappa in Google Maps</a></p>
+          <p class="venue-map-fallback"><a href="https://maps.google.com/?q=Via+Castiglione+134+Bologna" target="_blank" rel="noopener noreferrer" data-i18n="venue.maps">Apri mappa in Google Maps</a></p>
         </div>
       </div>
     </section>
@@ -371,10 +357,9 @@
     <!-- ── PARTNERS ── -->
     <section class="section partners" id="partner" aria-labelledby="partner-title">
       <div class="container">
-        <h2 id="partner-title">Partner &amp; Sponsor</h2>
-        <p class="partners-lead">I partner di OLTRE LA TERRA abilitano programmi con ricadute concrete: talk, workshop, borse, demo e produzione contenuti. Visibilità equa per tutti.</p>
+        <h2 id="partner-title" data-i18n="partners.title">Partner &amp; Sponsor</h2>
+        <p class="partners-lead" data-i18n="partners.lead">I partner di OLTRE LA TERRA abilitano programmi con ricadute concrete: talk, workshop, borse, demo e produzione contenuti. Visibilità equa per tutti.</p>
         <div class="partner-grid">
-          <!-- LOGHI PARTNER: sostituire i placeholder con i loghi reali dei partner. Formato SVG o WebP, sfondo trasparente. -->
           <div class="partner-logo-placeholder" aria-label="Logo partner 1"></div>
           <div class="partner-logo-placeholder" aria-label="Logo partner 2"></div>
           <div class="partner-logo-placeholder" aria-label="Logo partner 3"></div>
@@ -383,7 +368,7 @@
           <div class="partner-logo-placeholder" aria-label="Logo partner 6"></div>
         </div>
         <div class="partners-cta">
-          <a href="mailto:oltrelaterra@aquaponicdesign.it?subject=Proposta%20partnership%20OLTRE%20LA%20TERRA" class="btn btn-secondary" data-track="cta-diventa-partner">Diventa partner</a>
+          <a href="mailto:oltrelaterra@aquaponicdesign.it?subject=Proposta%20partnership%20OLTRE%20LA%20TERRA" class="btn btn-secondary" data-track="cta-diventa-partner" data-i18n="partners.cta">Diventa partner</a>
         </div>
       </div>
     </section>
@@ -391,31 +376,30 @@
     <!-- ── SIGNUP (dark) ── -->
     <section class="section signup" id="registrati" aria-labelledby="signup-title">
       <div class="container">
-        <h2 id="signup-title">Ricevi aggiornamenti</h2>
-        <p class="signup-lead">Iscriviti per ricevere il programma completo, aggiornamenti e informazioni sull'evento.</p>
+        <h2 id="signup-title" data-i18n="signup.title">Ricevi aggiornamenti</h2>
+        <p class="signup-lead" data-i18n="signup.lead">Iscriviti per ricevere il programma completo, aggiornamenti e informazioni sull'evento.</p>
         <form id="signup-form" class="signup-form" novalidate>
           <div class="form-group">
-            <label for="f-nome" class="form-label">Nome</label>
+            <label for="f-nome" class="form-label" data-i18n="signup.name">Nome</label>
             <input type="text" name="nome" id="f-nome" autocomplete="name" required placeholder="Il tuo nome" class="form-input">
           </div>
           <div class="form-group">
-            <label for="f-email" class="form-label">Email</label>
+            <label for="f-email" class="form-label" data-i18n="signup.email">Email</label>
             <input type="email" name="email" id="f-email" autocomplete="email" required placeholder="La tua email" class="form-input">
           </div>
           <div class="form-group">
-            <label for="f-profilo" class="form-label">Sei…</label>
+            <label for="f-profilo" class="form-label" data-i18n="signup.profile">Sei…</label>
             <select name="profilo" id="f-profilo" required class="form-select">
-              <option value="">Seleziona il tuo profilo</option>
-              <option value="partecipante">Partecipante</option>
-              <option value="espositore">Espositore</option>
-              <option value="partner">Partner</option>
-              <option value="press">Press</option>
-              <option value="creator">Creator</option>
+              <option value="" data-i18n="signup.profile.select">Seleziona il tuo profilo</option>
+              <option value="partecipante" data-i18n="signup.profile.attendee">Partecipante</option>
+              <option value="espositore" data-i18n="signup.profile.exhibitor">Espositore</option>
+              <option value="partner" data-i18n="signup.profile.partner">Partner</option>
+              <option value="press" data-i18n="signup.profile.press">Press</option>
+              <option value="creator" data-i18n="signup.profile.creator">Creator</option>
             </select>
           </div>
-          <!-- Honeypot anti-spam: nascosto via CSS, non compilare -->
           <input type="text" name="hp_field" tabindex="-1" aria-hidden="true" autocomplete="off" class="hp-field">
-          <button type="submit" class="btn btn-germoglio">Iscriviti</button>
+          <button type="submit" class="btn btn-germoglio" data-i18n="signup.submit">Iscriviti</button>
           <div id="form-feedback" role="alert" aria-live="polite" class="form-feedback"></div>
         </form>
       </div>
@@ -424,78 +408,78 @@
     <!-- ── FAQ ── -->
     <section class="section faq" id="faq" aria-labelledby="faq-title">
       <div class="container">
-        <h2 id="faq-title">Domande frequenti</h2>
+        <h2 id="faq-title" data-i18n="faq.title">Domande frequenti</h2>
         <div class="accordion">
           <div class="accordion-item">
             <button class="accordion-trigger" aria-expanded="false" aria-controls="faq-1">
-              <span>L'ingresso è gratuito?</span>
+              <span data-i18n="faq.q1">L'ingresso è gratuito?</span>
               <span class="accordion-icon" aria-hidden="true">▾</span>
             </button>
             <div class="accordion-panel" id="faq-1" hidden>
-              <p>Sì, l'evento è aperto al pubblico. La registrazione (gratuita) è consigliata per ricevere aggiornamenti e riservare posti ai workshop.</p>
+              <p data-i18n="faq.a1">Sì, l'evento è aperto al pubblico. La registrazione (gratuita) è consigliata per ricevere aggiornamenti e riservare posti ai workshop.</p>
             </div>
           </div>
           <div class="accordion-item">
             <button class="accordion-trigger" aria-expanded="false" aria-controls="faq-2">
-              <span>Quali sono gli orari?</span>
+              <span data-i18n="faq.q2">Quali sono gli orari?</span>
               <span class="accordion-icon" aria-hidden="true">▾</span>
             </button>
             <div class="accordion-panel" id="faq-2" hidden>
-              <p>I tre giorni si svolgono indicativamente dalle 10:00 alle 20:00, con serate live/dj dalle 19:00. Gli orari dettagliati saranno pubblicati presto.</p>
+              <p data-i18n="faq.a2">I tre giorni si svolgono indicativamente dalle 10:00 alle 20:00, con serate live/dj dalle 19:00. Gli orari dettagliati saranno pubblicati presto.</p>
             </div>
           </div>
           <div class="accordion-item">
             <button class="accordion-trigger" aria-expanded="false" aria-controls="faq-3">
-              <span>Come posso candidarmi come espositore?</span>
+              <span data-i18n="faq.q3">Come posso candidarmi come espositore?</span>
               <span class="accordion-icon" aria-hidden="true">▾</span>
             </button>
             <div class="accordion-panel" id="faq-3" hidden>
-              <p>Scrivici a <a href="mailto:oltrelaterra@aquaponicdesign.it?subject=Candidatura%20espositore">oltrelaterra@aquaponicdesign.it</a> con oggetto "Candidatura espositore". Ti risponderemo entro 5 giorni lavorativi.</p>
+              <p data-i18n="faq.a3">Scrivici a <a href="mailto:oltrelaterra@aquaponicdesign.it?subject=Candidatura%20espositore">oltrelaterra@aquaponicdesign.it</a> con oggetto "Candidatura espositore". Ti risponderemo entro 5 giorni lavorativi.</p>
             </div>
           </div>
           <div class="accordion-item">
             <button class="accordion-trigger" aria-expanded="false" aria-controls="faq-4">
-              <span>Ci sono opportunità per press e creator?</span>
+              <span data-i18n="faq.q4">Ci sono opportunità per press e creator?</span>
               <span class="accordion-icon" aria-hidden="true">▾</span>
             </button>
             <div class="accordion-panel" id="faq-4" hidden>
-              <p>Sì. Il Creator Hub è uno spazio dedicato a giornalisti, creator e comunicatori. Scrivici per accredito stampa o collaborazioni.</p>
+              <p data-i18n="faq.a4">Sì. Il Creator Hub è uno spazio dedicato a giornalisti, creator e comunicatori. Scrivici per accredito stampa o collaborazioni.</p>
             </div>
           </div>
           <div class="accordion-item">
             <button class="accordion-trigger" aria-expanded="false" aria-controls="faq-5">
-              <span>Cos'è il Demo Day?</span>
+              <span data-i18n="faq.q5">Cos'è il Demo Day?</span>
               <span class="accordion-icon" aria-hidden="true">▾</span>
             </button>
             <div class="accordion-panel" id="faq-5" hidden>
-              <p>Il Demo Day si svolge sabato pomeriggio: 17 progetti della Masterclass 2025/26 vengono presentati al pubblico. Sono previsti slot di matchmaking 1:1 su prenotazione (se disponibili).</p>
+              <p data-i18n="faq.a5">Il Demo Day si svolge sabato pomeriggio: 17 progetti della Masterclass 2025/26 vengono presentati al pubblico. Sono previsti slot di matchmaking 1:1 su prenotazione (se disponibili).</p>
             </div>
           </div>
           <div class="accordion-item">
             <button class="accordion-trigger" aria-expanded="false" aria-controls="faq-6">
-              <span>Come arrivo alle Serre dei Giardini?</span>
+              <span data-i18n="faq.q6">Come arrivo alle Serre dei Giardini?</span>
               <span class="accordion-icon" aria-hidden="true">▾</span>
             </button>
             <div class="accordion-panel" id="faq-6" hidden>
-              <p>Via Castiglione 134, Bologna. Raggiungibile a piedi/bici dal centro, con diverse linee bus. Parcheggio nei pressi: attenzione alla ZTL. Dettagli nella sezione Venue.</p>
+              <p data-i18n="faq.a6">Via Castiglione 134, Bologna. Raggiungibile a piedi/bici dal centro, con diverse linee bus. Parcheggio nei pressi: attenzione alla ZTL. Dettagli nella sezione Venue.</p>
             </div>
           </div>
           <div class="accordion-item">
             <button class="accordion-trigger" aria-expanded="false" aria-controls="faq-7">
-              <span>Posso diventare partner o sponsor?</span>
+              <span data-i18n="faq.q7">Posso diventare partner o sponsor?</span>
               <span class="accordion-icon" aria-hidden="true">▾</span>
             </button>
             <div class="accordion-panel" id="faq-7" hidden>
-              <p>Scrivi a <a href="mailto:oltrelaterra@aquaponicdesign.it?subject=Proposta%20partnership">oltrelaterra@aquaponicdesign.it</a> con oggetto "Proposta partnership". Offriamo pacchetti per obiettivi, non per logo size.</p>
+              <p data-i18n="faq.a7">Scrivi a <a href="mailto:oltrelaterra@aquaponicdesign.it?subject=Proposta%20partnership">oltrelaterra@aquaponicdesign.it</a> con oggetto "Proposta partnership". Offriamo pacchetti per obiettivi, non per logo size.</p>
             </div>
           </div>
           <div class="accordion-item">
             <button class="accordion-trigger" aria-expanded="false" aria-controls="faq-8">
-              <span>Chi organizza OLTRE LA TERRA?</span>
+              <span data-i18n="faq.q8">Chi organizza OLTRE LA TERRA?</span>
               <span class="accordion-icon" aria-hidden="true">▾</span>
             </button>
             <div class="accordion-panel" id="faq-8" hidden>
-              <p>L'evento è organizzato da Aquaponic Design Srl. Per qualsiasi informazione: <a href="mailto:oltrelaterra@aquaponicdesign.it">oltrelaterra@aquaponicdesign.it</a></p>
+              <p data-i18n="faq.a8">L'evento è organizzato da Aquaponic Design Srl. Per qualsiasi informazione: <a href="mailto:oltrelaterra@aquaponicdesign.it">oltrelaterra@aquaponicdesign.it</a></p>
             </div>
           </div>
         </div>
@@ -515,12 +499,11 @@
       <div class="footer-col footer-col--contact">
         <a href="mailto:oltrelaterra@aquaponicdesign.it" class="footer-email">oltrelaterra@aquaponicdesign.it</a>
         <nav class="footer-legal-nav" aria-label="Link legali">
-          <a href="#" class="footer-legal-link">Privacy policy</a>
-          <a href="#" class="footer-legal-link">Cookie policy</a>
+          <a href="#" class="footer-legal-link" data-i18n="footer.privacy">Privacy policy</a>
+          <a href="#" class="footer-legal-link" data-i18n="footer.cookie">Cookie policy</a>
         </nav>
       </div>
       <div class="footer-col footer-col--social">
-        <!-- SOCIAL: sostituire i link # con i profili reali quando disponibili -->
         <a href="#" class="social-link" aria-label="Instagram di OLTRE LA TERRA">Instagram</a>
         <a href="#" class="social-link" aria-label="LinkedIn di OLTRE LA TERRA">LinkedIn</a>
       </div>
@@ -536,5 +519,6 @@
   <button class="back-to-top" id="back-to-top" aria-label="Torna all'inizio" hidden>↑</button>
 
   <script src="assets/main.js" defer></script>
+  <script src="assets/i18n.js" defer></script>
 </body>
 </html>
