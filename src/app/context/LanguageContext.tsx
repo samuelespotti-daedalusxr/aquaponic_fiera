@@ -1,0 +1,27 @@
+import { createContext, useContext, useState } from 'react';
+import type { ReactNode } from 'react';
+import type { Language } from '../i18n/translations';
+
+interface LanguageContextValue {
+  language: Language;
+  setLanguage: (lang: Language) => void;
+}
+
+const LanguageContext = createContext<LanguageContextValue>({
+  language: 'it',
+  setLanguage: () => {},
+});
+
+export function LanguageProvider({ children }: { children: ReactNode }) {
+  const [language, setLanguage] = useState<Language>('it');
+
+  return (
+    <LanguageContext.Provider value={{ language, setLanguage }}>
+      {children}
+    </LanguageContext.Provider>
+  );
+}
+
+export function useLanguage() {
+  return useContext(LanguageContext);
+}
