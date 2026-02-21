@@ -72,18 +72,20 @@ function applyLang(lang) {
   try { localStorage.setItem('olt-lang', lang); } catch (_) { /* noop */ }
 }
 
-// ── Wire up buttons ─────────────────────────────────────────
-document.querySelectorAll('.lang-btn').forEach(btn => {
-  btn.addEventListener('click', () => applyLang(btn.dataset.lang));
-});
-
 // ── Init ───────────────────────────────────────────────────
 const VALID_LANGS = ['it', 'en'];
 const DEFAULT_LANG = 'it';
 
-(function init() {
+// Wire up buttons and init after DOM is ready
+document.addEventListener('DOMContentLoaded', function () {
+  // Wire up lang buttons
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => applyLang(btn.dataset.lang));
+  });
+
+  // Read saved preference or fall back to default
   let lang = DEFAULT_LANG;
   try { lang = localStorage.getItem('olt-lang') || DEFAULT_LANG; } catch (_) { /* noop */ }
   if (!VALID_LANGS.includes(lang)) lang = DEFAULT_LANG;
   applyLang(lang);
-}());
+});
