@@ -6,43 +6,61 @@ export function Hero() {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <img
-          src="https://images.unsplash.com/photo-1571645163064-77faa9676a46?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBzdGFydHVwJTIwZXZlbnQlMjBjb25mZXJlbmNlfGVufDF8fHx8MTc3MTU5NzUyN3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-          alt="Event"
+          src="assets/images/serre-giardini-bologna.jpg"
+          alt="Vista aerea delle Serre dei Giardini di Bologna, serre di vetro immerse nel verde"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-[#00BFA5]/90 via-[#0097A7]/85 to-[#00838F]/90" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#1f3d2b]/60 via-[#1f3d2b]/50 to-[#1f3d2b]/70" />
       </div>
 
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h1 className="text-5xl md:text-7xl lg:text-8xl text-white mb-6 animate-fade-in">Innovate <span className="text-[#E0F7F4]">2026</span></h1>
-        <p className="text-xl md:text-2xl lg:text-3xl text-white/95 mb-4 max-w-3xl mx-auto">
-          Il futuro della sostenibilità e dell'innovazione
+        <p className="text-sm md:text-base text-white/80 uppercase tracking-widest mb-4">
+          Forum Nazionale · Esposizione Innovativa · Masterclass Imprenditoriali
         </p>
-        <p className="text-lg md:text-xl text-white/80 mb-12 max-w-2xl mx-auto">
-          3 giorni di esposizioni, workshop interattivi e tavole rotonde con i leader del settore
+        <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold text-white mb-4 animate-fade-in tracking-tight">
+          OLTRE LA TERRA
+        </h1>
+        <p className="text-lg md:text-xl text-white/90 mb-2 max-w-3xl mx-auto italic">
+          Dove innovazione tecnologica e agricoltura si incontrano
         </p>
-        
+        <p className="text-base md:text-lg text-white/80 mb-10 max-w-2xl mx-auto">
+          8–10 Maggio 2026 · Le Serre dei Giardini · Bologna
+        </p>
+
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <button className="bg-white text-[#00BFA5] px-8 py-4 rounded-full hover:bg-[#E0F7F4] transition-all transform hover:scale-105 flex items-center gap-2">
-            Registrati Ora
+          <a
+            href="#registrati"
+            className="bg-white text-[#1f3d2b] px-8 py-4 rounded-full hover:bg-[#e8f0e9] transition-all transform hover:scale-105 flex items-center gap-2 font-semibold"
+          >
+            Scopri il programma
             <ArrowRight className="w-5 h-5" />
-          </button>
-          <button className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full hover:bg-white/10 transition-all">
-            Scopri di più
-          </button>
+          </a>
+          <a
+            href="#registrati"
+            className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full hover:bg-white/10 transition-all"
+          >
+            Registrati / Aggiornamenti
+          </a>
         </div>
 
-        {/* Event Info Pills */}
+        {/* Event Stats Pills */}
         <div className="flex flex-wrap gap-6 justify-center mt-16 text-white">
           <div className="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full">
-            <p className="opacity-80">📅 15-17 Maggio 2026</p>
+            <p className="opacity-90 font-semibold">40 Espositori</p>
+            <p className="opacity-60 text-xs">Infrastrutture, Tecnologie, Servizi</p>
           </div>
           <div className="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full">
-            <p className="opacity-80">📍 Milano Expo Center</p>
+            <p className="opacity-90 font-semibold">3 Giorni</p>
+            <p className="opacity-60 text-xs">di Talk &amp; Incontri</p>
           </div>
           <div className="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full">
-            <p className="opacity-80">👥 500+ Partecipanti</p>
+            <p className="opacity-90 font-semibold">17 Progetti</p>
+            <p className="opacity-60 text-xs">Demo Day Startup</p>
+          </div>
+          <div className="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full">
+            <p className="opacity-90 font-semibold">Nuova</p>
+            <p className="opacity-60 text-xs">Imprenditorialità Locale</p>
           </div>
         </div>
       </div>
