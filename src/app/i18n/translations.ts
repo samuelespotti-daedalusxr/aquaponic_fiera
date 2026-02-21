@@ -67,6 +67,20 @@ export const translations = {
         intermediate: 'Intermedio',
         all: 'Tutti i livelli',
       },
+      items: [
+        {
+          title: "Introduzione all'Acquaponica",
+          date: '15 Maggio',
+        },
+        {
+          title: 'IoT per Smart Farming',
+          date: '16 Maggio',
+        },
+        {
+          title: 'Business Model Sostenibile',
+          date: '17 Maggio',
+        },
+      ],
     },
     roundtables: {
       sectionLabel: 'Tavole Rotonde',
@@ -79,14 +93,20 @@ export const translations = {
         {
           title: "Il Futuro dell'Agricoltura Urbana",
           description: 'Discussione sulle sfide e opportunità della produzione alimentare nelle città',
+          date: '15 Maggio',
+          panelists: ['CEO GreenCity', 'Ricercatore UniMI', 'Fondatore UrbanGrow', 'Investitore Impact'],
         },
         {
           title: 'Sostenibilità e Profitto: Un Binomio Possibile?',
-          description: 'Come costruire business model redditizi mantenendo l\'impatto ambientale positivo',
+          description: "Come costruire business model redditizi mantenendo l'impatto ambientale positivo",
+          date: '16 Maggio',
+          panelists: ['CFO EcoVentures', 'Startup Founder', 'Angel Investor', 'Sustainability Expert'],
         },
         {
           title: 'Tecnologia e Natura: La Nuova Sinergia',
           description: "L'integrazione di AI, IoT e biotecnologie per un'agricoltura innovativa",
+          date: '17 Maggio',
+          panelists: ['CTO AgriTech', 'Biologo', 'Data Scientist', 'Product Designer'],
         },
       ],
     },
@@ -94,6 +114,7 @@ export const translations = {
       title: 'Informazioni Pratiche',
       description: "Tutto quello che devi sapere per partecipare all'evento",
       card1Title: 'Date',
+      card1Date: '15-17 Maggio 2026',
       card1Sub: '3 giorni intensivi',
       card2Title: 'Luogo',
       card3Title: 'Orari',
@@ -192,6 +213,20 @@ export const translations = {
         intermediate: 'Intermediate',
         all: 'All levels',
       },
+      items: [
+        {
+          title: 'Introduction to Aquaponics',
+          date: '15 May',
+        },
+        {
+          title: 'IoT for Smart Farming',
+          date: '16 May',
+        },
+        {
+          title: 'Sustainable Business Model',
+          date: '17 May',
+        },
+      ],
     },
     roundtables: {
       sectionLabel: 'Round Tables',
@@ -204,14 +239,20 @@ export const translations = {
         {
           title: 'The Future of Urban Agriculture',
           description: 'Discussion on the challenges and opportunities of food production in cities',
+          date: '15 May',
+          panelists: ['CEO GreenCity', 'UniMI Researcher', 'UrbanGrow Founder', 'Impact Investor'],
         },
         {
           title: 'Sustainability and Profit: A Possible Combination?',
           description: 'How to build profitable business models while maintaining a positive environmental impact',
+          date: '16 May',
+          panelists: ['CFO EcoVentures', 'Startup Founder', 'Angel Investor', 'Sustainability Expert'],
         },
         {
           title: 'Technology and Nature: The New Synergy',
           description: 'The integration of AI, IoT and biotechnologies for innovative agriculture',
+          date: '17 May',
+          panelists: ['CTO AgriTech', 'Biologist', 'Data Scientist', 'Product Designer'],
         },
       ],
     },
@@ -219,6 +260,7 @@ export const translations = {
       title: 'Practical Information',
       description: 'Everything you need to know to participate in the event',
       card1Title: 'Dates',
+      card1Date: '15-17 May 2026',
       card1Sub: '3 intensive days',
       card2Title: 'Venue',
       card3Title: 'Hours',

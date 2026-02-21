@@ -7,10 +7,7 @@ interface LanguageContextValue {
   setLanguage: (lang: Language) => void;
 }
 
-const LanguageContext = createContext<LanguageContextValue>({
-  language: 'it',
-  setLanguage: () => {},
-});
+const LanguageContext = createContext<LanguageContextValue | undefined>(undefined);
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguage] = useState<Language>('it');
@@ -22,6 +19,10 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   );
 }
 
-export function useLanguage() {
-  return useContext(LanguageContext);
+export function useLanguage(): LanguageContextValue {
+  const ctx = useContext(LanguageContext);
+  if (!ctx) {
+    throw new Error('useLanguage must be used within a LanguageProvider');
+  }
+  return ctx;
 }

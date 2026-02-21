@@ -22,7 +22,7 @@ export function EventInfo() {
               <Calendar className="w-7 h-7 text-white" />
             </div>
             <h3 className="text-2xl mb-2">{t.card1Title}</h3>
-            <p className="text-white/80">15-17 Maggio 2026</p>
+            <p className="text-white/80">{t.card1Date}</p>
             <p className="text-sm text-white/60 mt-2">{t.card1Sub}</p>
           </div>
 

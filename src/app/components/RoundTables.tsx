@@ -5,22 +5,16 @@ import { translations } from '../i18n/translations';
 const roundtableData = [
   {
     moderator: "Dr. Elena Fontana",
-    panelists: ["CEO GreenCity", "Ricercatore UniMI", "Fondatore UrbanGrow", "Investitore Impact"],
-    date: "15 Maggio",
     time: "15:00 - 17:00",
     image: "https://images.unsplash.com/photo-1697059361419-349e924ed363?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyb3VuZHRhYmxlJTIwZGlzY3Vzc2lvbiUyMGJ1c2luZXNzfGVufDF8fHx8MTc3MTU5NzUyN3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
   },
   {
     moderator: "Prof. Marco Santini",
-    panelists: ["CFO EcoVentures", "Startup Founder", "Angel Investor", "Sustainability Expert"],
-    date: "16 Maggio",
     time: "11:00 - 13:00",
     image: "https://images.unsplash.com/photo-1697059361419-349e924ed363?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyb3VuZHRhYmxlJTIwZGlzY3Vzc2lvbiUyMGJ1c2luZXNzfGVufDF8fHx8MTc3MTU5NzUyN3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
   },
   {
     moderator: "Ing. Sara Colombo",
-    panelists: ["CTO AgriTech", "Biologo", "Data Scientist", "Product Designer"],
-    date: "17 Maggio",
     time: "14:30 - 16:30",
     image: "https://images.unsplash.com/photo-1697059361419-349e924ed363?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyb3VuZHRhYmxlJTIwZGlzY3Vzc2lvbiUyMGJ1c2luZXNzfGVufDF8fHx8MTc3MTU5NzUyN3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
   }
@@ -64,7 +58,7 @@ export function RoundTables() {
                         <MessageCircle className="w-5 h-5 text-[#00BFA5]" />
                       </div>
                       <div>
-                        <p className="text-sm text-[#0097A7]">{data.date} • {data.time}</p>
+                        <p className="text-sm text-[#0097A7]">{item.date} • {data.time}</p>
                       </div>
                     </div>
 
@@ -82,7 +76,7 @@ export function RoundTables() {
                         {t.panelistsLabel}
                       </p>
                       <div className="flex flex-wrap gap-2">
-                        {data.panelists.map((panelist, idx) => (
+                        {item.panelists.map((panelist, idx) => (
                           <span
                             key={idx}
                             className="bg-[#E0F7F4] text-[#00838F] px-3 py-1 rounded-full text-sm"
