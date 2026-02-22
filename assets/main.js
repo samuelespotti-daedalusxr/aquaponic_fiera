@@ -20,7 +20,7 @@ if (navToggle && mainNav) {
 }
 
 // ── 3. Chiudi nav al click su link ─────────────────────────
-vLinks.forEach(link => {
+navLinks.forEach(link => {
   link.addEventListener('click', () => {
     if (navToggle && mainNav) {
       navToggle.setAttribute('aria-expanded', 'false');
@@ -148,6 +148,7 @@ if (signupForm && formFeedback) {
   let dragging = false;
   let startX = 0, startY = 0, dx = 0, dy = 0;
   let topCard = null;
+  let dirLock = null;      // 'x' | 'y' | null — direction lock for touch
 
   // ── helpers ──
   function mod(i) {
@@ -218,7 +219,7 @@ if (signupForm && formFeedback) {
   function bindDrag(card) {
     // Mouse
     card.addEventListener('mousedown', onMouseDown, { passive: false });
-    // Touch
+    // Touch — touchstart stays passive (no preventDefault needed on start)
     card.addEventListener('touchstart', onTouchStart, { passive: true });
   }
 
@@ -253,24 +254,55 @@ if (signupForm && formFeedback) {
     startX = t.clientX;
     startY = t.clientY;
     dx = dy = 0;
+    dirLock = null;
     dragging = true;
     topCard.style.transition = 'none';
-    topCard.addEventListener('touchmove', onTouchMove, { passive: true });
-    topCard.addEventListener('touchend', onTouchEnd, { once: true });
+    // passive: false on touchmove so we can call preventDefault() to block
+    // vertical page scroll when the user is swiping horizontally
+    topCard.addEventListener('touchmove', onTouchMove, { passive: false });
+    topCard.addEventListener('touchend',   onTouchEnd,  { once: true });
+    topCard.addEventListener('touchcancel', onTouchEnd, { once: true });
   }
 
   function onTouchMove(e) {
     if (!dragging) return;
-    const t = e.touches[0];
-    dx = t.clientX - startX;
-    dy = t.clientY - startY;
-    applyDrag(dx, dy);
+    const t  = e.touches[0];
+    const cx = t.clientX - startX;
+    const cy = t.clientY - startY;
+
+    // Determine scroll-vs-swipe direction once per gesture (after 10px)
+    if (!dirLock) {
+      if (Math.abs(cx) > Math.abs(cy) && Math.abs(cx) > 10) {
+        dirLock = 'x'; // horizontal swipe — take control
+      } else if (Math.abs(cy) > Math.abs(cx) && Math.abs(cy) > 10) {
+        dirLock = 'y'; // vertical scroll — let page scroll naturally
+      }
+    }
+
+    if (dirLock === 'x') {
+      // Block page scroll so horizontal drag works cleanly
+      e.preventDefault();
+      dx = cx;
+      dy = cy;
+      applyDrag(dx, dy);
+    }
+    // dirLock === 'y': do nothing, browser handles the scroll
   }
 
   function onTouchEnd() {
     dragging = false;
-    topCard.removeEventListener('touchmove', onTouchMove);
-    settle();
+    topCard.removeEventListener('touchmove',   onTouchMove);
+    topCard.removeEventListener('touchcancel', onTouchEnd);
+    if (dirLock === 'x') {
+      settle();
+    } else {
+      // Vertical scroll gesture: snap card back cleanly without fly-away
+      if (topCard) {
+        topCard.style.transition = 'transform 0.4s cubic-bezier(0.16,1,0.3,1)';
+        topCard.style.transform  = '';
+      }
+      dirLock = null;
+    }
   }
 
   // Apply drag transform to top card + promote card below in real time
