@@ -20,7 +20,7 @@ if (navToggle && mainNav) {
 }
 
 // ── 3. Chiudi nav al click su link ─────────────────────────
-navLinks.forEach(link => {
+vLinks.forEach(link => {
   link.addEventListener('click', () => {
     if (navToggle && mainNav) {
       navToggle.setAttribute('aria-expanded', 'false');
@@ -31,59 +31,12 @@ navLinks.forEach(link => {
 
 // ── 4. Header scroll shadow ────────────────────────────────
 if (header) {
-  const onScroll = () => {
+  window.addEventListener('scroll', () => {
     header.classList.toggle('scrolled', window.scrollY > 10);
-  };
-  window.addEventListener('scroll', onScroll, { passive: true });
+  }, { passive: true });
 }
 
-// ── 5. Accordion (programma + FAQ) ─────────────────────────
-document.querySelectorAll('.accordion-trigger').forEach(trigger => {
-  trigger.addEventListener('click', () => {
-    const expanded = trigger.getAttribute('aria-expanded') === 'true';
-    const panelId  = trigger.getAttribute('aria-controls');
-    const panel    = panelId ? document.getElementById(panelId) : null;
-
-    // Close all others in same accordion
-    const parentAccordion = trigger.closest('.accordion');
-    if (parentAccordion) {
-      parentAccordion.querySelectorAll('.accordion-trigger').forEach(t => {
-        if (t !== trigger) {
-          t.setAttribute('aria-expanded', 'false');
-          const pid = t.getAttribute('aria-controls');
-          const p   = pid ? document.getElementById(pid) : null;
-          if (p) p.hidden = true;
-        }
-      });
-    }
-
-    trigger.setAttribute('aria-expanded', String(!expanded));
-    if (panel) panel.hidden = expanded;
-  });
-});
-
-// ── 6. Active nav link (IntersectionObserver) ──────────────
-if ('IntersectionObserver' in window && sections.length) {
-  const navObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        navLinks.forEach(link => {
-          link.classList.toggle(
-            'is-active',
-            link.getAttribute('href') === '#' + entry.target.id
-          );
-        });
-      }
-    });
-  // rootMargin: top -40% keeps nav from activating too early when section
-  // is only just entering the viewport; bottom -55% ensures the active link
-  // updates as the next section scrolls in from below.
-  }, { rootMargin: '-40% 0px -55% 0px' });
-
-  sections.forEach(sec => navObserver.observe(sec));
-}
-
-// ── 7. Back-to-top ─────────────────────────────────────────
+// ── 5. Back-to-top ─────────────────────────────────────────
 if (backToTop) {
   window.addEventListener('scroll', () => {
     backToTop.hidden = window.scrollY < 400;
@@ -94,63 +47,83 @@ if (backToTop) {
   });
 }
 
-// ── 8. CTA click tracking (data-cta) ─────────────────────
-document.querySelectorAll('[data-cta]').forEach(el => {
-  el.addEventListener('click', () => {
-    const ctaId = el.dataset.cta;
-    console.log('CTA clicked:', ctaId);
-    // GA4: gtag('event', 'cta_click', { cta_id: ctaId });
-    // Matomo: _paq.push(['trackEvent', 'CTA', 'click', ctaId]);
+// ── 6. Active nav link on scroll ───────────────────────────
+const observerOptions = {
+  rootMargin: '-40% 0px -55% 0px',
+  threshold: 0,
+};
+
+const navObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.getAttribute('id');
+      navLinks.forEach(link => {
+        link.classList.toggle('is-active', link.getAttribute('href') === `#${id}`);
+      });
+    }
+  });
+}, observerOptions);
+
+sections.forEach(sec => navObserver.observe(sec));
+
+// ── 7. Accordion ───────────────────────────────────────────
+document.querySelectorAll('.accordion-trigger').forEach(trigger => {
+  trigger.addEventListener('click', () => {
+    const expanded = trigger.getAttribute('aria-expanded') === 'true';
+    const panelId  = trigger.getAttribute('aria-controls');
+    const panel    = document.getElementById(panelId);
+
+    // Close siblings in same accordion
+    const accordion = trigger.closest('.accordion');
+    accordion.querySelectorAll('.accordion-trigger').forEach(t => {
+      if (t !== trigger) {
+        t.setAttribute('aria-expanded', 'false');
+        const p = document.getElementById(t.getAttribute('aria-controls'));
+        if (p) p.hidden = true;
+      }
+    });
+
+    trigger.setAttribute('aria-expanded', String(!expanded));
+    if (panel) panel.hidden = expanded;
   });
 });
 
-// ── 9. Form signup ─────────────────────────────────────────
+// ── 8. Signup form ─────────────────────────────────────────
 if (signupForm && formFeedback) {
   signupForm.addEventListener('submit', e => {
     e.preventDefault();
 
-    // Honeypot check: silently abort if a bot filled the hidden field.
-    // No user feedback is intentional — bots shouldn't know they were detected.
-    const hp = signupForm.querySelector('[name="website"]');
-    if (hp && hp.value.trim() !== '') return;
+    // Honeypot check
+    const hp = signupForm.querySelector('.hp-field');
+    if (hp && hp.value) return;
 
-    const nome    = signupForm.querySelector('[name="nome"]');
-    const email   = signupForm.querySelector('[name="email"]');
-    const profilo = signupForm.querySelector('[name="profilo"]');
-
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if (!nome || nome.value.trim() === '') {
-      formFeedback.textContent = 'Inserisci il tuo nome.';
-      formFeedback.className = 'form-feedback error';
-      nome && nome.focus();
-      return;
-    }
-    if (!email || !emailPattern.test(email.value.trim())) {
-      formFeedback.textContent = 'Inserisci un\'email valida.';
-      formFeedback.className = 'form-feedback error';
-      email && email.focus();
-      return;
-    }
-    if (!profilo || profilo.value === '') {
-      formFeedback.textContent = 'Seleziona il tuo profilo.';
-      formFeedback.className = 'form-feedback error';
-      profilo && profilo.focus();
+    const emailInput = signupForm.querySelector('[name="email"]');
+    if (!emailInput || !emailInput.value.trim()) {
+      formFeedback.textContent = 'Inserisci un indirizzo email valido.';
+      formFeedback.className   = 'form-feedback error';
+      emailInput && emailInput.focus();
       return;
     }
 
-    // Success feedback
-    formFeedback.textContent = 'Grazie! Ti aggiorneremo su OLTRE LA TERRA.';
-    formFeedback.className = 'form-feedback success';
-    signupForm.reset();
+    // Simulate async submit — replace with real fetch to your ESP
+    formFeedback.textContent = '';
+    formFeedback.className   = 'form-feedback';
+
+    setTimeout(() => {
+      formFeedback.textContent = '✓ Iscritto! Ti aggiorneremo presto.';
+      formFeedback.className   = 'form-feedback success';
+      signupForm.reset();
+    }, 400);
   });
 }
 
-// ── 10. Smooth scroll polyfill check ───────────────────────
-// CSS già ha scroll-behavior: smooth su html. Nessun polyfill necessario per browser moderni.
+// ── 9. Swipe Gallery ───────────────────────────────────────
+(function initGallery() {
+  const stack     = document.getElementById('gallery-stack');
+  const dotsWrap  = document.getElementById('gallery-dots');
+  if (!stack || !dotsWrap) return;
 
-// ── 11. Swipe Gallery ──────────────────────────────────────
-(function () {
+  // Images: use real paths; if missing, CSS gradient placeholders are rendered
   const IMAGES = [
     './assets/gallery/gallery-01.jpg',
     './assets/gallery/gallery-02.jpg',
@@ -160,252 +133,210 @@ if (signupForm && formFeedback) {
     './assets/gallery/gallery-06.jpg',
   ];
 
-  // Fallback gradients when images are not available yet
-  const GRADIENTS = [
+  const VISIBLE   = 4;     // number of stacked cards
+  const THRESHOLD = 90;    // px to trigger fly-away
+  const GRADIENTS = [      // fallback CSS gradients (placeholders)
     'linear-gradient(135deg,#1F3D2B 0%,#6E8F74 100%)',
     'linear-gradient(135deg,#6E8F74 0%,#B7D36B 100%)',
+    'linear-gradient(135deg,#B7D36B 0%,#1F3D2B 100%)',
     'linear-gradient(135deg,#B86B4B 0%,#1F3D2B 100%)',
-    'linear-gradient(135deg,#1C1F1D 0%,#6E8F74 100%)',
-    'linear-gradient(135deg,#B7D36B 0%,#B86B4B 100%)',
-    'linear-gradient(135deg,#6E8F74 0%,#1F3D2B 100%)',
+    'linear-gradient(135deg,#1F3D2B 0%,#B86B4B 100%)',
+    'linear-gradient(135deg,#6E8F74 0%,#B86B4B 100%)',
   ];
 
-  const STACK_SIZE  = 4;   // Number of visible cards in stack
-  const SWIPE_THRESHOLD = 90;
-  const FLY_ROTATE  = 25;
-  const FLY_DURATION = 320; // ms
-
-  const stack    = document.getElementById('gallery-stack');
-  const dotsWrap = document.getElementById('gallery-dots');
-
-  if (!stack || !dotsWrap) return;
-
-  let current = 0;       // index of the top card image
-  let isDragging = false;
-  let startX = 0, startY = 0;
-  let currentX = 0, currentY = 0;
+  let current = 0;         // index of top card in IMAGES
+  let dragging = false;
+  let startX = 0, startY = 0, dx = 0, dy = 0;
   let topCard = null;
-  let animating = false;
 
-  // ── Helpers ────────────────────────────────────────────────
+  // ── helpers ──
   function mod(i) {
     return ((i % IMAGES.length) + IMAGES.length) % IMAGES.length;
   }
 
-  // ── Dots ───────────────────────────────────────────────────
+  // Build / rebuild dots
   function renderDots() {
     dotsWrap.innerHTML = '';
-    for (let i = 0; i < IMAGES.length; i++) {
-      const d = document.createElement('button');
-      d.className = 'gallery-dot' + (i === mod(current) ? ' is-active' : '');
-      d.setAttribute('aria-label', 'Immagine ' + (i + 1));
-      d.dataset.index = i;
-      d.addEventListener('click', () => {
-        if (animating) return;
-        const delta = ((i - current) % IMAGES.length + IMAGES.length) % IMAGES.length;
-        if (delta === 0) return;
-        // advance `delta` times (fly-away each)
-        let count = 0;
-        function step() {
-          if (count >= delta) return;
-          count++;
-          flyAway(1, step);
-        }
-        flyAway(1, step);
+    IMAGES.forEach((_, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'gallery-dot' + (i === mod(current) ? ' is-active' : '');
+      btn.setAttribute('role', 'tab');
+      btn.setAttribute('aria-label', `Immagine ${i + 1}`);
+      btn.setAttribute('aria-selected', String(i === mod(current)));
+      btn.addEventListener('click', () => {
+        current = i;
+        render();
       });
-      dotsWrap.appendChild(d);
-    }
+      dotsWrap.appendChild(btn);
+    });
   }
 
-  // ── Card element factory ────────────────────────────────────
+  // Create a single card element
   function makeCard(imgIndex, pos) {
-    const el = document.createElement('div');
-    el.className = 'swipe-card';
-    el.dataset.pos = pos;
+    const card = document.createElement('div');
+    card.className   = 'swipe-card';
+    card.dataset.pos = pos;
 
     const img = new Image();
-    img.alt = 'Galleria immagine ' + (imgIndex + 1);
     img.src = IMAGES[imgIndex];
-    img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;user-select:none;pointer-events:none;';
+    img.alt = `Galleria immagine ${imgIndex + 1}`;
+    img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
     img.draggable = false;
 
     // On error: show gradient placeholder
-    img.addEventListener('error', () => {
-      el.style.background = GRADIENTS[imgIndex % GRADIENTS.length];
-    });
+    img.onerror = () => {
+      card.style.background = GRADIENTS[imgIndex % GRADIENTS.length];
+    };
 
-    el.appendChild(img);
-    return el;
+    card.appendChild(img);
+    return card;
   }
 
-  // ── Render stack ────────────────────────────────────────────
-  function renderStack() {
+  // Full render: clear stack, add VISIBLE cards
+  function render() {
     stack.innerHTML = '';
-    for (let pos = STACK_SIZE - 1; pos >= 0; pos--) {
-      const imgIdx = mod(current + pos);
-      const card   = makeCard(imgIdx, pos);
+    for (let pos = VISIBLE - 1; pos >= 0; pos--) {
+      const idx  = mod(current + pos);
+      const card = makeCard(idx, pos);
+
+      // Apply static transform for pos > 0
+      if (pos > 0) {
+        card.style.transition = 'transform 0.35s cubic-bezier(0.16,1,0.3,1)';
+      }
+
       stack.appendChild(card);
     }
-    topCard = stack.querySelector('.swipe-card[data-pos="0"]');
-    bindDrag(topCard);
+
+    // Bind drag to top card (pos 0)
+    topCard = stack.querySelector('[data-pos="0"]');
+    if (topCard) bindDrag(topCard);
+
     renderDots();
   }
 
-  // ── Apply real-time transform during drag ──────────────────
-  function applyDrag(dx, dy) {
-    if (!topCard) return;
-    const rotate = dx * 0.06;
-    topCard.style.transform = `translateX(${dx}px) translateY(${dy}px) rotate(${rotate}deg)`;
-    topCard.style.transition = 'none';
-
-    // Card pos=1 scales toward 1.0 proportionally to drag distance
-    const progress = Math.min(Math.abs(dx) / SWIPE_THRESHOLD, 1);
-    const nextCard = stack.querySelector('.swipe-card[data-pos="1"]');
-    if (nextCard) {
-      const fromScale = 0.94;
-      const fromTY    = 18;
-      const scaleNow  = fromScale + (1 - fromScale) * progress;
-      const tyNow     = fromTY - fromTY * progress;
-      nextCard.style.transform = `scale(${scaleNow}) translateY(${tyNow}px)`;
-      nextCard.style.transition = 'none';
-    }
-  }
-
-  // ── Fly-away animation ─────────────────────────────────────
-  function flyAway(direction, callback) {
-    if (!topCard || animating) return;
-    animating = true;
-
-    const flyX    = direction * (window.innerWidth + 200);
-    const rotate  = direction * FLY_ROTATE;
-
-    topCard.style.transition = `transform ${FLY_DURATION}ms cubic-bezier(0.16,1,0.3,1), opacity ${FLY_DURATION}ms ease`;
-    topCard.style.transform  = `translateX(${flyX}px) rotate(${rotate}deg)`;
-    topCard.style.opacity    = '0';
-
-    // Also snap card pos=1 to card pos=0 position
-    const nextCard = stack.querySelector('.swipe-card[data-pos="1"]');
-    if (nextCard) {
-      nextCard.style.transition = `transform ${FLY_DURATION}ms cubic-bezier(0.16,1,0.3,1)`;
-      nextCard.style.transform  = 'scale(1) translateY(0px)';
-    }
-
-    setTimeout(() => {
-      current = mod(current + 1);
-      animating = false;
-      renderStack();
-      if (typeof callback === 'function') callback();
-    }, FLY_DURATION);
-  }
-
-  // ── Snap back ──────────────────────────────────────────────
-  function snapBack() {
-    if (!topCard) return;
-    topCard.style.transition = `transform 320ms cubic-bezier(0.16,1,0.3,1)`;
-    topCard.style.transform  = '';
-
-    const nextCard = stack.querySelector('.swipe-card[data-pos="1"]');
-    if (nextCard) {
-      nextCard.style.transition = `transform 320ms cubic-bezier(0.16,1,0.3,1)`;
-      nextCard.style.transform  = '';
-    }
-  }
-
-  // ── Drag binding ───────────────────────────────────────────
+  // ── Drag logic ──
   function bindDrag(card) {
-    if (!card) return;
-
     // Mouse
-    card.addEventListener('mousedown', onMouseDown);
-
+    card.addEventListener('mousedown', onMouseDown, { passive: false });
     // Touch
     card.addEventListener('touchstart', onTouchStart, { passive: true });
   }
 
   function onMouseDown(e) {
-    if (animating) return;
+    if (e.button !== 0) return;
     e.preventDefault();
-    isDragging = true;
     startX = e.clientX;
     startY = e.clientY;
-    currentX = 0;
-    currentY = 0;
-    topCard.style.cursor = 'grabbing';
-
-    window.addEventListener('mousemove', onMouseMove);
-    window.addEventListener('mouseup',   onMouseUp);
+    dx = dy = 0;
+    dragging = true;
+    topCard.style.transition = 'none';
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseup', onMouseUp);
   }
 
   function onMouseMove(e) {
-    if (!isDragging) return;
-    currentX = e.clientX - startX;
-    currentY = e.clientY - startY;
-    applyDrag(currentX, currentY);
+    if (!dragging) return;
+    dx = e.clientX - startX;
+    dy = e.clientY - startY;
+    applyDrag(dx, dy);
   }
 
   function onMouseUp() {
-    if (!isDragging) return;
-    isDragging = false;
-    topCard.style.cursor = 'grab';
-    window.removeEventListener('mousemove', onMouseMove);
-    window.removeEventListener('mouseup',   onMouseUp);
-
-    if (Math.abs(currentX) >= SWIPE_THRESHOLD) {
-      flyAway(currentX > 0 ? 1 : -1);
-    } else {
-      snapBack();
-    }
+    dragging = false;
+    document.removeEventListener('mousemove', onMouseMove);
+    document.removeEventListener('mouseup', onMouseUp);
+    settle();
   }
 
   function onTouchStart(e) {
-    if (animating) return;
-    const touch = e.touches[0];
-    isDragging = true;
-    startX = touch.clientX;
-    startY = touch.clientY;
-    currentX = 0;
-    currentY = 0;
-
-    window.addEventListener('touchmove', onTouchMove, { passive: false });
-    window.addEventListener('touchend',  onTouchEnd);
+    const t = e.touches[0];
+    startX = t.clientX;
+    startY = t.clientY;
+    dx = dy = 0;
+    dragging = true;
+    topCard.style.transition = 'none';
+    topCard.addEventListener('touchmove', onTouchMove, { passive: true });
+    topCard.addEventListener('touchend', onTouchEnd, { once: true });
   }
 
   function onTouchMove(e) {
-    if (!isDragging) return;
-    const touch = e.touches[0];
-    currentX = touch.clientX - startX;
-    currentY = touch.clientY - startY;
-
-    // Only prevent default if horizontal drag dominates (avoid blocking scroll)
-    if (Math.abs(currentX) > Math.abs(currentY)) {
-      e.preventDefault();
-    }
-    applyDrag(currentX, currentY);
+    if (!dragging) return;
+    const t = e.touches[0];
+    dx = t.clientX - startX;
+    dy = t.clientY - startY;
+    applyDrag(dx, dy);
   }
 
   function onTouchEnd() {
-    if (!isDragging) return;
-    isDragging = false;
-    window.removeEventListener('touchmove', onTouchMove);
-    window.removeEventListener('touchend',  onTouchEnd);
+    dragging = false;
+    topCard.removeEventListener('touchmove', onTouchMove);
+    settle();
+  }
 
-    if (Math.abs(currentX) >= SWIPE_THRESHOLD) {
-      flyAway(currentX > 0 ? 1 : -1);
-    } else {
-      snapBack();
+  // Apply drag transform to top card + promote card below in real time
+  function applyDrag(dx, dy) {
+    if (!topCard) return;
+    const rot = dx * 0.06;
+    topCard.style.transform = `translate(${dx}px, ${dy}px) rotate(${rot}deg)`;
+
+    // Progress 0..1 based on threshold
+    const progress = Math.min(Math.abs(dx) / THRESHOLD, 1);
+
+    // Animate card at pos=1 toward pos=0 transform
+    const card1 = stack.querySelector('[data-pos="1"]');
+    if (card1) {
+      const scale = 0.94 + (1 - 0.94) * progress;
+      const tY    = 18 - 18 * progress;
+      card1.style.transform = `scale(${scale}) translateY(${tY}px)`;
     }
   }
 
-  // ── Keyboard navigation ────────────────────────────────────
-  stack.setAttribute('tabindex', '0');
+  // Settle: fly-away or snap back
+  function settle() {
+    if (!topCard) return;
+    if (Math.abs(dx) >= THRESHOLD) {
+      flyAway(dx > 0 ? 1 : -1);
+    } else {
+      // Snap back
+      topCard.style.transition = 'transform 0.4s cubic-bezier(0.16,1,0.3,1)';
+      topCard.style.transform  = '';
+      // Reset card1 too
+      const card1 = stack.querySelector('[data-pos="1"]');
+      if (card1) {
+        card1.style.transition = 'transform 0.4s cubic-bezier(0.16,1,0.3,1)';
+        card1.style.transform  = 'scale(0.94) translateY(18px)';
+      }
+    }
+  }
+
+  function flyAway(dir) {
+    if (!topCard) return;
+    const rot = dir * 25;
+    const tx  = dir * (window.innerWidth + 300);
+    topCard.style.transition = 'transform 0.45s cubic-bezier(0.16,1,0.3,1), opacity 0.45s ease';
+    topCard.style.transform  = `translate(${tx}px, ${dy}px) rotate(${rot}deg)`;
+    topCard.style.opacity    = '0';
+
+    topCard.addEventListener('transitionend', () => {
+      current = mod(current + 1);
+      render();
+    }, { once: true });
+  }
+
+  // ── Keyboard navigation ──
   stack.addEventListener('keydown', e => {
-    if (animating) return;
     if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
       e.preventDefault();
-      flyAway(e.key === 'ArrowRight' ? 1 : -1);
+      const dir = e.key === 'ArrowRight' ? 1 : -1;
+      if (dir === 1) {
+        current = mod(current + 1);
+      } else {
+        current = mod(current - 1);
+      }
+      render();
     }
   });
 
-  // ── Init ───────────────────────────────────────────────────
-  renderStack();
-}());
+  // ── Init ──
+  render();
+})();
