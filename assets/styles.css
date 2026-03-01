@@ -344,6 +344,7 @@ h3 {
   border: none;
   cursor: pointer;
   padding: 8px;
+  z-index: 101;
 }
 
 .nav-toggle .bar {
@@ -352,12 +353,25 @@ h3 {
   height: 2px;
   background: var(--color-primary);
   border-radius: 2px;
-  transition: all var(--t) var(--ease);
+  transition: transform var(--t) var(--ease), opacity var(--t) var(--ease);
+  transform-origin: center;
+}
+
+/* Hamburger → X quando il menu è aperto */
+.nav-toggle[aria-expanded="true"] .bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.nav-toggle[aria-expanded="true"] .bar:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.nav-toggle[aria-expanded="true"] .bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
 }
 
 /* Main nav: nascosta su mobile */
 .main-nav {
-  display: none;
+  display: flex;
   position: fixed;
   inset: var(--nav-h) 0 0 0;
   background: var(--color-bg);
@@ -367,10 +381,19 @@ h3 {
   gap: 1rem;
   overflow-y: auto;
   z-index: 99;
+  /* Stato chiuso */
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
+  transition: opacity 0.25s var(--ease), transform 0.25s var(--ease), visibility 0.25s;
 }
 
 .main-nav.is-open {
-  display: flex;
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
 }
 
 .nav-list {
@@ -413,6 +436,12 @@ h3 {
     background: transparent;
     inset: auto;
     overflow: visible;
+    /* Ripristina visibilità — sempre visibile su desktop */
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+    transition: none;
   }
 
   .nav-list {

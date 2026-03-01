@@ -11,20 +11,56 @@ const formFeedback = document.getElementById('form-feedback');
 const sections     = document.querySelectorAll('main section[id]');
 
 // ── 2. Nav mobile (hamburger toggle) ───────────────────────
+function openNav() {
+  mainNav.classList.add('is-open');
+  navToggle.setAttribute('aria-expanded', 'true');
+  navToggle.setAttribute('aria-label', 'Chiudi menu di navigazione');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeNav() {
+  mainNav.classList.remove('is-open');
+  navToggle.setAttribute('aria-expanded', 'false');
+  navToggle.setAttribute('aria-label', 'Apri menu di navigazione');
+  document.body.style.overflow = '';
+}
+
 if (navToggle && mainNav) {
   navToggle.addEventListener('click', () => {
     const expanded = navToggle.getAttribute('aria-expanded') === 'true';
-    navToggle.setAttribute('aria-expanded', String(!expanded));
-    mainNav.classList.toggle('is-open', !expanded);
+    if (expanded) {
+      closeNav();
+    } else {
+      openNav();
+    }
+  });
+
+  // Chiudi cliccando fuori dal menu (sull'overlay)
+  document.addEventListener('click', e => {
+    if (
+      mainNav.classList.contains('is-open') &&
+      !mainNav.contains(e.target) &&
+      !navToggle.contains(e.target)
+    ) {
+      closeNav();
+    }
+  });
+
+  // Chiudi con tasto Escape
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && mainNav.classList.contains('is-open')) {
+      closeNav();
+      navToggle.focus();
+    }
   });
 }
 
-// ── 3. Chiudi nav al click su link ─────────────────────────
-navLinks.forEach(link => {
+// ── 3. Chiudi nav al click su link o CTA ───────────────────
+const navClickables = document.querySelectorAll('.nav-link, .nav-cta');
+navClickables.forEach(link => {
   link.addEventListener('click', () => {
     if (navToggle && mainNav) {
-      navToggle.setAttribute('aria-expanded', 'false');
-      mainNav.classList.remove('is-open');
+      closeNav();
     }
   });
 });
