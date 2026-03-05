@@ -153,7 +153,70 @@ if (signupForm && formFeedback) {
   });
 }
 
-// ── 9. Swipe Gallery ───────────────────────────────────────
+// ── 9. Ospiti / Espositori — array-driven scrollable cards ─
+(function initOspiti() {
+  const grid = document.getElementById('ospiti-grid');
+  if (!grid) return;
+
+  // ── Dati ospiti: aggiungere/modificare qui ──
+  const OSPITI = [
+    {
+      foto: '',
+      nome: 'Marta Ferretti',
+      ruolo: 'Fondatrice · AquaGrow Italia',
+      bio: 'Pioniera dell\'acquaponica italiana, sviluppa sistemi integrati pesce-pianta per ristorazione sostenibile.',
+    },
+    {
+      foto: '',
+      nome: 'Lorenzo Bianchi',
+      ruolo: 'Ricercatore · Università di Bologna',
+      bio: 'Studioso di idroponica e colture aeroponiche applicate all\'horticulture urbana. Speaker e autore.',
+    },
+  ];
+
+  OSPITI.forEach((ospite) => {
+    const article = document.createElement('article');
+    article.className = 'ospiti-card';
+    article.setAttribute('role', 'listitem');
+
+    const imgDiv = document.createElement('div');
+    imgDiv.className = 'ospiti-card-img';
+    if (ospite.foto) {
+      const img = document.createElement('img');
+      img.src = ospite.foto;
+      img.alt = ospite.nome;
+      img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
+      imgDiv.appendChild(img);
+    } else {
+      imgDiv.setAttribute('role', 'img');
+      imgDiv.setAttribute('aria-label', `Foto ${ospite.nome} — da sostituire`);
+    }
+
+    const body = document.createElement('div');
+    body.className = 'ospiti-card-body';
+
+    const name = document.createElement('h3');
+    name.className = 'ospiti-card-name';
+    name.textContent = ospite.nome;
+
+    const role = document.createElement('p');
+    role.className = 'ospiti-card-role';
+    role.textContent = ospite.ruolo;
+
+    const bio = document.createElement('p');
+    bio.className = 'ospiti-card-bio';
+    bio.textContent = ospite.bio;
+
+    body.appendChild(name);
+    body.appendChild(role);
+    body.appendChild(bio);
+    article.appendChild(imgDiv);
+    article.appendChild(body);
+    grid.appendChild(article);
+  });
+})();
+
+// ── 10. Swipe Gallery ───────────────────────────────────────
 (function initGallery() {
   const stack     = document.getElementById('gallery-stack');
   const dotsWrap  = document.getElementById('gallery-dots');

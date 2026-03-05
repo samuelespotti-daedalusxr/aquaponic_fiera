@@ -603,7 +603,17 @@ h3 {
 }
 
 .about-text h2 {
-  margin-bottom: var(--sp-3);
+  margin-bottom: var(--sp-2);
+}
+
+.about-microcopy {
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--color-secondary);
+  margin-bottom: var(--sp-4);
+  max-width: 520px;
+  line-height: 1.5;
+  opacity: 0.85;
 }
 
 .about-text p {
@@ -1570,30 +1580,45 @@ h3 {
   line-height: 1.65;
 }
 
+/* Horizontal scroll wrapper */
+.ospiti-scroll-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(110,143,116,0.4) transparent;
+  margin: 0 calc(-1 * var(--sp-4));
+  padding: 0 var(--sp-4) var(--sp-2);
+}
+
+.ospiti-scroll-wrap::-webkit-scrollbar {
+  height: 4px;
+}
+
+.ospiti-scroll-wrap::-webkit-scrollbar-thumb {
+  background: rgba(110,143,116,0.4);
+  border-radius: 2px;
+}
+
 .ospiti-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  flex-direction: row;
   gap: var(--sp-3);
-}
-
-@media (min-width: 640px) {
-  .ospiti-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (min-width: 900px) {
-  .ospiti-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
+  width: max-content;
 }
 
 .ospiti-card {
+  flex: 0 0 240px;
   border: 1px solid rgba(110,143,116,0.25);
   border-radius: var(--r-card);
   overflow: hidden;
   background: var(--color-bg);
   transition: box-shadow var(--t) var(--ease);
+}
+
+@media (min-width: 640px) {
+  .ospiti-card {
+    flex: 0 0 260px;
+  }
 }
 
 .ospiti-card:hover {
