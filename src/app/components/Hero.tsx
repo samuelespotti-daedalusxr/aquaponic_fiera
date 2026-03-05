@@ -6,7 +6,7 @@ const IMG_URL = 'assets/serre-giardini-bologna.jpg';
 /* SOSTITUIRE con foto drone de Le Serre dei Giardini — luce naturale, formato landscape */
 
 export function Hero() {
-  const { lang, setLang } = useLanguage();
+  const { lang } = useLanguage();
   const t = translations[lang].hero;
 
   return (
@@ -23,56 +23,6 @@ export function Hero() {
         />
         {/* Overlay Verde Bosco 58% */}
         <div className="absolute inset-0" style={{ background: 'rgba(31,61,43,0.58)' }} />
-      </div>
-
-      {/* Language switcher — pill grigio scuro top right */}
-      <div className="absolute top-5 right-6 z-30">
-        <div
-          style={{
-            background: 'rgba(28,31,29,0.82)',
-            borderRadius: '999px',
-            display: 'flex',
-            alignItems: 'center',
-            padding: '6px 18px',
-            backdropFilter: 'blur(6px)',
-          }}
-        >
-          <button
-            onClick={() => setLang('it')}
-            style={{
-              background: 'none',
-              border: 'none',
-              color: lang === 'it' ? '#fff' : 'rgba(255,255,255,0.45)',
-              fontWeight: lang === 'it' ? 700 : 400,
-              fontSize: '13px',
-              cursor: 'pointer',
-              letterSpacing: '0.08em',
-              padding: '0 4px',
-              fontFamily: 'Inter, sans-serif',
-            }}
-            aria-pressed={lang === 'it'}
-          >
-            IT
-          </button>
-          <span style={{ color: 'rgba(255,255,255,0.3)', margin: '0 6px', fontSize: '13px' }}>|</span>
-          <button
-            onClick={() => setLang('en')}
-            style={{
-              background: 'none',
-              border: 'none',
-              color: lang === 'en' ? '#fff' : 'rgba(255,255,255,0.45)',
-              fontWeight: lang === 'en' ? 700 : 400,
-              fontSize: '13px',
-              cursor: 'pointer',
-              letterSpacing: '0.08em',
-              padding: '0 4px',
-              fontFamily: 'Inter, sans-serif',
-            }}
-            aria-pressed={lang === 'en'}
-          >
-            EN
-          </button>
-        </div>
       </div>
 
       {/* Content */}

@@ -1,3 +1,4 @@
+import { ArrowRight, Download } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../i18n/translations';
 
@@ -7,7 +8,7 @@ export function About() {
 
   return (
     <section
-      id="about"
+      id="perche"
       style={{
         background: '#F6F3EC',
         padding: '100px 24px',
@@ -51,36 +52,118 @@ export function About() {
             fontSize: '17px',
             lineHeight: 1.75,
             color: '#1C1F1D',
-            marginBottom: '24px',
+            marginBottom: '48px',
             maxWidth: '720px',
           }}
         >
           {t.description}
         </p>
 
-        {/* Bullets */}
-        <ul style={{ listStyle: 'none', padding: 0, margin: '48px 0 0', display: 'flex', flexDirection: 'column', gap: '20px' }}>
-          {[
-            { icon: '◎', text: t.card1Title + ' — ' + t.card1Text },
-            { icon: '◎', text: t.card2Title + ' — ' + t.card2Text },
-            { icon: '◎', text: t.card3Title + ' — ' + t.card3Text },
-          ].map((item, i) => (
-            <li
-              key={i}
-              style={{
-                display: 'flex',
-                gap: '16px',
-                alignItems: 'flex-start',
-                borderLeft: '2px solid #B7D36B',
-                paddingLeft: '20px',
-              }}
-            >
-              <span style={{ color: '#1F3D2B', fontWeight: 700, fontSize: '15px', lineHeight: 1.7 }}>
-                {item.text}
-              </span>
-            </li>
-          ))}
-        </ul>
+        {/* Primary CTA row */}
+        <div
+          style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: '14px',
+            marginBottom: '48px',
+          }}
+        >
+          <a
+            href="#programma"
+            style={{
+              background: '#1F3D2B',
+              color: '#fff',
+              borderRadius: '999px',
+              padding: '14px 28px',
+              fontFamily: 'Manrope, sans-serif',
+              fontWeight: 700,
+              fontSize: '15px',
+              textDecoration: 'none',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '8px',
+            }}
+          >
+            {t.ctaDiscover}
+            <ArrowRight size={16} />
+          </a>
+          <a
+            href="/programma.pdf"
+            download
+            style={{
+              background: 'transparent',
+              color: '#1F3D2B',
+              border: '1.5px solid #1F3D2B',
+              borderRadius: '999px',
+              padding: '14px 28px',
+              fontFamily: 'Manrope, sans-serif',
+              fontWeight: 600,
+              fontSize: '15px',
+              textDecoration: 'none',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '8px',
+            }}
+          >
+            <Download size={15} />
+            {t.ctaDownload}
+          </a>
+        </div>
+
+        {/* Divider */}
+        <div style={{ width: '100%', height: '1px', background: 'rgba(110,143,116,0.25)', marginBottom: '40px' }} />
+
+        {/* Secondary calls */}
+        <p
+          style={{
+            fontSize: '12px',
+            letterSpacing: '0.14em',
+            textTransform: 'uppercase',
+            color: '#6E8F74',
+            marginBottom: '20px',
+          }}
+        >
+          {t.callsLabel}
+        </p>
+        <div
+          style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: '14px',
+          }}
+        >
+          <a
+            href="#esponi"
+            style={{
+              background: '#B7D36B',
+              color: '#1F3D2B',
+              borderRadius: '999px',
+              padding: '13px 28px',
+              fontFamily: 'Manrope, sans-serif',
+              fontWeight: 700,
+              fontSize: '15px',
+              textDecoration: 'none',
+            }}
+          >
+            {t.ctaExhibitors}
+          </a>
+          <a
+            href="#creator"
+            style={{
+              background: 'transparent',
+              color: '#1F3D2B',
+              border: '1.5px solid #B7D36B',
+              borderRadius: '999px',
+              padding: '13px 28px',
+              fontFamily: 'Manrope, sans-serif',
+              fontWeight: 600,
+              fontSize: '15px',
+              textDecoration: 'none',
+            }}
+          >
+            {t.ctaCreators}
+          </a>
+        </div>
       </div>
     </section>
   );
