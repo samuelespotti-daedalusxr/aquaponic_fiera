@@ -8,7 +8,7 @@ export const translations = {
       tagline: 'Dove innovazione tecnologica e agricoltura si incontrano',
       date: '8–10 Maggio 2026 · Le Serre dei Giardini · Bologna',
       cta1: 'Scopri il programma',
-      cta2: 'Registrati / Aggiornamenti',
+      cta2: 'Esponi',
       stat1Label: '40 Espositori',
       stat1Sub: 'Infrastrutture, Tecnologie, Servizi',
       stat2Label: '3 Giorni',
@@ -19,19 +19,15 @@ export const translations = {
       stat4Sub: 'Imprenditorialità Locale',
     },
     about: {
-      eyebrow: 'Chi Siamo',
-      title: 'Un evento che trasforma il futuro',
+      eyebrow: 'Perché',
+      title: 'Un evento di networking, cultura, pratiche',
       description:
-        "Innovate 2026 è il punto d'incontro tra imprenditori, innovatori e visionari che stanno costruendo un futuro più sostenibile e tecnologicamente avanzato.",
-      card1Title: 'Innovazione',
-      card1Text:
-        "Scopri le ultime tecnologie e soluzioni che stanno rivoluzionando i settori della sostenibilità e dell'agricoltura urbana.",
-      card2Title: 'Networking',
-      card2Text:
-        'Connettiti con professionisti, investitori e aziende leader per creare partnership strategiche e opportunità di business.',
-      card3Title: 'Crescita',
-      card3Text:
-        'Partecipa a workshop pratici e sessioni formative per sviluppare competenze concrete e far crescere il tuo progetto.',
+        "OLTRE LA TERRA è il punto d'incontro tra imprenditori, ricercatori e appassionati che stanno costruendo un futuro agricolo più sostenibile, radicato nel territorio e aperto all'innovazione.",
+      ctaDiscover: 'Scopri come partecipare',
+      ctaDownload: 'Scarica il programma',
+      callsLabel: 'Partecipa',
+      ctaExhibitors: 'Call per espositori',
+      ctaCreators: 'Call per creatori',
     },
     exhibitors: {
       eyebrow: 'Espositori',
@@ -137,7 +133,7 @@ export const translations = {
       tagline: 'Where technological innovation and agriculture meet',
       date: '8–10 May 2026 · Le Serre dei Giardini · Bologna',
       cta1: 'Discover the program',
-      cta2: 'Register / Updates',
+      cta2: 'Exhibit',
       stat1Label: '40 Exhibitors',
       stat1Sub: 'Infrastructure, Technology, Services',
       stat2Label: '3 Days',
@@ -148,19 +144,15 @@ export const translations = {
       stat4Sub: 'Local Entrepreneurship',
     },
     about: {
-      eyebrow: 'About Us',
-      title: 'An event that transforms the future',
+      eyebrow: 'Why',
+      title: 'A networking, culture and practice event',
       description:
-        'Innovate 2026 is the meeting point between entrepreneurs, innovators and visionaries building a more sustainable and technologically advanced future.',
-      card1Title: 'Innovation',
-      card1Text:
-        'Discover the latest technologies and solutions revolutionizing the sustainability and urban agriculture sectors.',
-      card2Title: 'Networking',
-      card2Text:
-        'Connect with professionals, investors and leading companies to create strategic partnerships and business opportunities.',
-      card3Title: 'Growth',
-      card3Text:
-        'Join practical workshops and training sessions to develop concrete skills and grow your project.',
+        'OLTRE LA TERRA is the meeting point between entrepreneurs, researchers and enthusiasts building a more sustainable agricultural future, rooted in the territory and open to innovation.',
+      ctaDiscover: 'Discover how to participate',
+      ctaDownload: 'Download the programme',
+      callsLabel: 'Participate',
+      ctaExhibitors: 'Call for exhibitors',
+      ctaCreators: 'Call for creators',
     },
     exhibitors: {
       eyebrow: 'Exhibitors',
