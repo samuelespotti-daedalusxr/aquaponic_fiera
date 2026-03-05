@@ -1,4 +1,4 @@
-name: Deploy static site to GitHub Pages
+name: Force re-deploy
 
 on:
   push:
@@ -6,26 +6,8 @@ on:
       - main
   workflow_dispatch:
 
-permissions:
-  contents: write
-
 jobs:
-  deploy:
+  noop:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Prepara i file statici
-        run: |
-          mkdir _site
-          cp index.html _site/
-          cp -r assets _site/
-          touch _site/.nojekyll
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./_site
-          publish_branch: gh-pages
-          force_orphan: true
+      - run: echo "GitHub Pages deploys automatically from main branch"
