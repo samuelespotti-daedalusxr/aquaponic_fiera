@@ -1522,6 +1522,116 @@ h3 {
   color: var(--color-primary);
 }
 
+/* ── Tavola rotonda: notice obbligatoria ── */
+.istituzionale-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-2);
+  background: rgba(184,107,75,0.08);
+  border: 1.5px solid rgba(184,107,75,0.35);
+  border-radius: 8px;
+  padding: var(--sp-2) var(--sp-3);
+  margin-bottom: var(--sp-3);
+  font-size: 0.875rem;
+  color: var(--color-text);
+  line-height: 1.55;
+}
+
+.istituzionale-notice svg {
+  flex-shrink: 0;
+  color: var(--color-earth);
+  margin-top: 2px;
+}
+
+.istituzionale-how {
+  font-size: 0.875rem;
+  color: var(--color-text);
+  line-height: 1.65;
+  margin-bottom: var(--sp-4);
+  max-width: 600px;
+}
+
+/* ── Ospiti / Espositori ── */
+.ospiti {
+  background: var(--color-bg);
+  border-top: 1px solid rgba(31,61,43,0.07);
+}
+
+.ospiti h2 {
+  margin-bottom: var(--sp-2);
+}
+
+.ospiti-lead {
+  max-width: 600px;
+  margin-bottom: var(--sp-6);
+  color: var(--color-text);
+  font-size: 0.95rem;
+  opacity: 0.75;
+  line-height: 1.65;
+}
+
+.ospiti-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp-3);
+}
+
+@media (min-width: 640px) {
+  .ospiti-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .ospiti-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.ospiti-card {
+  border: 1px solid rgba(110,143,116,0.25);
+  border-radius: var(--r-card);
+  overflow: hidden;
+  background: var(--color-bg);
+  transition: box-shadow var(--t) var(--ease);
+}
+
+.ospiti-card:hover {
+  box-shadow: var(--shadow-card);
+}
+
+.ospiti-card-img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: linear-gradient(135deg, rgba(110,143,116,0.18) 0%, rgba(31,61,43,0.12) 100%);
+}
+
+.ospiti-card-body {
+  padding: var(--sp-2) var(--sp-2);
+}
+
+.ospiti-card-name {
+  font-family: var(--font-title);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 2px;
+}
+
+.ospiti-card-role {
+  font-size: 0.75rem;
+  color: var(--color-secondary);
+  margin-bottom: var(--sp-1);
+  font-weight: 500;
+}
+
+.ospiti-card-bio {
+  font-size: 0.8rem;
+  color: var(--color-text);
+  line-height: 1.5;
+  opacity: 0.7;
+}
+
 /* ── About CTA group ── */
 .about-cta-group {
   display: flex;
