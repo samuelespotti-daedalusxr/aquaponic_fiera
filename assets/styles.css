@@ -869,6 +869,16 @@ h3 {
   background: rgba(110,143,116,0.05);
 }
 
+.format-card-location {
+  display: block;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-secondary);
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
 .format-card-title {
   font-family: var(--font-title);
   font-size: 0.95rem;
@@ -1073,6 +1083,115 @@ h3 {
   color: rgba(110,143,116,0.5);
   font-weight: 500;
   letter-spacing: 0.04em;
+}
+
+/* ── Map section ── */
+.map-section {
+  background: rgba(31,61,43,0.03);
+}
+
+.map-section h2 {
+  margin-bottom: var(--sp-4);
+}
+
+.map-wrap {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  border-radius: var(--r-card);
+  overflow: hidden;
+  border: 1px solid rgba(110,143,116,0.2);
+}
+
+.map-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  cursor: zoom-in;
+}
+
+.map-zoom-btn {
+  position: absolute;
+  bottom: var(--sp-3);
+  right: var(--sp-3);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: white;
+  border: 1px solid rgba(110,143,116,0.4);
+  border-radius: var(--r-pill);
+  padding: 0.4rem 0.9rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  cursor: pointer;
+  transition: background var(--t) var(--ease), box-shadow var(--t) var(--ease);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.map-zoom-btn:hover {
+  background: var(--color-bg);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+}
+
+/* Lightbox */
+.map-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.map-lightbox[hidden] {
+  display: none;
+}
+
+.map-lightbox-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(4px);
+}
+
+.map-lightbox-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 95vw;
+  max-height: 92dvh;
+  overflow: auto;
+  border-radius: 12px;
+}
+
+.map-lightbox-img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+.map-lightbox-close {
+  position: fixed;
+  top: var(--sp-3);
+  right: var(--sp-3);
+  z-index: 2;
+  background: white;
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--color-primary);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+  transition: background var(--t) var(--ease);
+}
+
+.map-lightbox-close:hover {
+  background: var(--color-bg);
 }
 
 /* ── CTA Secondarie ── */
@@ -1562,6 +1681,7 @@ h3 {
 .ospiti {
   background: var(--color-bg);
   border-top: 1px solid rgba(31,61,43,0.07);
+  overflow: hidden;
 }
 
 .ospiti h2 {

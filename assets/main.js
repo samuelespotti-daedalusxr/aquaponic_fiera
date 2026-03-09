@@ -303,3 +303,34 @@ if (signupForm && formFeedback) {
   renderDots();
   resetTimer();
 })();
+
+// ── 11. Map lightbox ────────────────────────────────────────
+(function initMapLightbox() {
+  const lightbox  = document.getElementById('map-lightbox');
+  const backdrop  = document.getElementById('map-lightbox-backdrop');
+  const closeBtn  = document.getElementById('map-lightbox-close');
+  const zoomBtn   = document.getElementById('map-zoom-btn');
+  const mapImg    = document.getElementById('map-img');
+  if (!lightbox) return;
+
+  function openLightbox() {
+    lightbox.hidden = false;
+    document.body.style.overflow = 'hidden';
+    closeBtn && closeBtn.focus();
+  }
+
+  function closeLightbox() {
+    lightbox.hidden = true;
+    document.body.style.overflow = '';
+    zoomBtn && zoomBtn.focus();
+  }
+
+  if (zoomBtn) zoomBtn.addEventListener('click', openLightbox);
+  if (mapImg)  mapImg.addEventListener('click', openLightbox);
+  if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+  if (backdrop) backdrop.addEventListener('click', closeLightbox);
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && !lightbox.hidden) closeLightbox();
+  });
+})();
