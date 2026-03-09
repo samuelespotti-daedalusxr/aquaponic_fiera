@@ -441,3 +441,55 @@ if (signupForm && formFeedback) {
     if (e.key === 'Escape' && !lightbox.hidden) closeLightbox();
   });
 })();
+
+/* ═══════════════════════════════════════════
+   LEGAL MODALS — Privacy & Cookie Policy
+   ═══════════════════════════════════════════ */
+(function () {
+  function openModal(id) {
+    const modal = document.getElementById(id);
+    if (!modal) return;
+    modal.hidden = false;
+    document.body.style.overflow = 'hidden';
+    const close = modal.querySelector('.legal-modal__close');
+    if (close) close.focus();
+  }
+
+  function closeModal(modal) {
+    modal.hidden = true;
+    document.body.style.overflow = '';
+    // Restituisci il focus al trigger che ha aperto il modal
+    const trigger = document.querySelector(`[data-modal="${modal.id}"]`);
+    if (trigger) trigger.focus();
+  }
+
+  // Open via data-modal buttons (footer + inline links)
+  document.addEventListener('click', e => {
+    const trigger = e.target.closest('[data-modal]');
+    if (trigger) openModal(trigger.dataset.modal);
+  });
+
+  // Close via X button
+  document.addEventListener('click', e => {
+    if (e.target.closest('.legal-modal__close')) {
+      const modal = e.target.closest('.legal-modal');
+      if (modal) closeModal(modal);
+    }
+  });
+
+  // Close via backdrop click
+  document.addEventListener('click', e => {
+    if (e.target.classList.contains('legal-modal__backdrop')) {
+      const modal = e.target.closest('.legal-modal');
+      if (modal) closeModal(modal);
+    }
+  });
+
+  // Close via Escape
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      const open = document.querySelector('.legal-modal:not([hidden])');
+      if (open) closeModal(open);
+    }
+  });
+})();
