@@ -885,8 +885,8 @@
             oltrelaterra@aquaponicdesign.it
           </a>
           <nav class="footer-legal-nav" aria-label="Link legali">
-            <a href="#" class="footer-legal-link">Privacy Policy</a>
-            <a href="#" class="footer-legal-link">Cookie Policy</a>
+            <button class="footer-legal-link" data-modal="privacy-modal">Privacy Policy</button>
+            <button class="footer-legal-link" data-modal="cookie-modal">Cookie Policy</button>
           </nav>
         </div>
 
@@ -910,6 +910,104 @@
     aria-label="Torna in cima alla pagina"
     hidden
   >↑</button>
+
+  <!-- ══════════════════════════════════════════
+       MODAL — Privacy Policy
+  ══════════════════════════════════════════ -->
+  <div id="privacy-modal" class="legal-modal" role="dialog" aria-modal="true" aria-labelledby="privacy-modal-title" hidden>
+    <div class="legal-modal__backdrop"></div>
+    <div class="legal-modal__panel">
+      <button class="legal-modal__close" aria-label="Chiudi">✕</button>
+      <div class="legal-modal__body">
+        <h2 id="privacy-modal-title">Privacy Policy</h2>
+        <p class="legal-meta">Ultimo aggiornamento: 9 marzo 2026</p>
+
+        <h3>1. Titolare del trattamento</h3>
+        <p>Aquaponic Design Srl, con sede legale in Italia.<br>
+        Email: <a href="mailto:oltrelaterra@aquaponicdesign.it">oltrelaterra@aquaponicdesign.it</a></p>
+
+        <h3>2. Dati raccolti e finalità</h3>
+        <p>Raccogliamo i dati personali che ci fornisci volontariamente tramite il form di iscrizione alla newsletter (nome e indirizzo email), al solo scopo di inviarti aggiornamenti sull'evento OLTRE LA TERRA 2026. Non raccogliamo dati di navigazione tramite sistemi di analisi propri.</p>
+
+        <h3>3. Base giuridica</h3>
+        <p>Il trattamento si basa sul tuo consenso esplicito (art. 6, par. 1, lett. a, GDPR), che puoi revocare in qualsiasi momento inviando una richiesta a <a href="mailto:oltrelaterra@aquaponicdesign.it">oltrelaterra@aquaponicdesign.it</a>.</p>
+
+        <h3>4. Conservazione</h3>
+        <p>I tuoi dati sono conservati per il tempo strettamente necessario a gestire la comunicazione sull'evento e fino alla tua eventuale richiesta di cancellazione, o comunque non oltre 12 mesi dalla data dell'evento.</p>
+
+        <h3>5. Destinatari</h3>
+        <p>I dati raccolti tramite il form newsletter sono trattati da Mailchimp (The Rocket Science Group LLC, USA), in qualità di responsabile del trattamento, nel rispetto del GDPR e delle clausole contrattuali standard. Non cediamo i tuoi dati a terzi per finalità di marketing.</p>
+
+        <h3>6. Trasferimento extra-UE</h3>
+        <p>Mailchimp è basata negli Stati Uniti. Il trasferimento avviene in base alle Clausole Contrattuali Standard approvate dalla Commissione Europea.</p>
+
+        <h3>7. Diritti dell'interessato</h3>
+        <p>Hai diritto di accesso, rettifica, cancellazione, limitazione del trattamento, portabilità e opposizione (artt. 15–22 GDPR). Puoi esercitare i tuoi diritti scrivendo a <a href="mailto:oltrelaterra@aquaponicdesign.it">oltrelaterra@aquaponicdesign.it</a>. Hai inoltre il diritto di proporre reclamo al Garante per la protezione dei dati personali (<a href="https://www.garanteprivacy.it" target="_blank" rel="noopener">garanteprivacy.it</a>).</p>
+
+        <h3>8. Cookie</h3>
+        <p>Per informazioni sui cookie utilizzati da questo sito consulta la nostra <button class="legal-inline-link" data-modal="cookie-modal">Cookie Policy</button>.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       MODAL — Cookie Policy
+  ══════════════════════════════════════════ -->
+  <div id="cookie-modal" class="legal-modal" role="dialog" aria-modal="true" aria-labelledby="cookie-modal-title" hidden>
+    <div class="legal-modal__backdrop"></div>
+    <div class="legal-modal__panel">
+      <button class="legal-modal__close" aria-label="Chiudi">✕</button>
+      <div class="legal-modal__body">
+        <h2 id="cookie-modal-title">Cookie Policy</h2>
+        <p class="legal-meta">Ultimo aggiornamento: 9 marzo 2026</p>
+
+        <p>Questo sito (<strong>oltrelaterra.aquaponicdesign.it</strong> / GitHub Pages) utilizza un numero limitato di cookie, descritti di seguito.</p>
+
+        <h3>1. Cookie tecnici (necessari)</h3>
+        <p>Sono cookie strettamente necessari al funzionamento del sito. Non richiedono consenso ai sensi dell'art. 122 del Codice Privacy (D.Lgs. 196/2003) e del Provvedimento del Garante dell'8 maggio 2014.</p>
+        <table class="cookie-table">
+          <thead><tr><th>Nome</th><th>Origine</th><th>Durata</th><th>Scopo</th></tr></thead>
+          <tbody>
+            <tr><td>Nessuno</td><td>—</td><td>—</td><td>Il sito non imposta cookie tecnici propri</td></tr>
+          </tbody>
+        </table>
+
+        <h3>2. Cookie di terze parti — YouTube</h3>
+        <p>Alcune pagine includono video incorporati tramite <strong>YouTube</strong> (Google LLC, USA). Quando il video viene caricato, YouTube può impostare cookie per raccogliere dati statistici e personalizzare i contenuti. Utilizziamo l'embedding in modalità <em>youtube-nocookie.com</em> ove possibile per limitare il tracciamento.</p>
+        <table class="cookie-table">
+          <thead><tr><th>Cookie</th><th>Durata</th><th>Scopo</th></tr></thead>
+          <tbody>
+            <tr><td>VISITOR_INFO1_LIVE, YSC, GPS</td><td>Sessione / 6 mesi</td><td>Tracciamento riproduzione video</td></tr>
+            <tr><td>CONSENT</td><td>2 anni</td><td>Stato consenso utente Google</td></tr>
+          </tbody>
+        </table>
+        <p>Per maggiori informazioni: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy Policy Google</a>.</p>
+
+        <h3>3. Cookie di terze parti — Mailchimp</h3>
+        <p>Se utilizzi il form di iscrizione alla newsletter, <strong>Mailchimp</strong> (The Rocket Science Group LLC, USA) può impostare cookie per il corretto funzionamento del modulo e per misurare l'efficacia delle comunicazioni.</p>
+        <table class="cookie-table">
+          <thead><tr><th>Cookie</th><th>Durata</th><th>Scopo</th></tr></thead>
+          <tbody>
+            <tr><td>_mcid, MCPopupClosed</td><td>Sessione / 1 anno</td><td>Identificazione subscriber, stato popup</td></tr>
+          </tbody>
+        </table>
+        <p>Per maggiori informazioni: <a href="https://mailchimp.com/legal/cookies/" target="_blank" rel="noopener">Cookie Policy Mailchimp</a>.</p>
+
+        <h3>4. Come gestire i cookie</h3>
+        <p>Puoi bloccare o eliminare i cookie tramite le impostazioni del tuo browser:</p>
+        <ul>
+          <li><a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener">Chrome</a></li>
+          <li><a href="https://support.mozilla.org/it/kb/Eliminare%20i%20cookie" target="_blank" rel="noopener">Firefox</a></li>
+          <li><a href="https://support.apple.com/it-it/guide/safari/sfri11471/mac" target="_blank" rel="noopener">Safari</a></li>
+          <li><a href="https://support.microsoft.com/it-it/windows/eliminare-e-gestire-i-cookie-168dab11-0753-043d-7c16-ede5947fc64d" target="_blank" rel="noopener">Edge</a></li>
+        </ul>
+        <p>La disabilitazione dei cookie potrebbe compromettere alcune funzionalità del sito (es. riproduzione video).</p>
+
+        <h3>5. Contatti</h3>
+        <p>Per qualsiasi domanda: <a href="mailto:oltrelaterra@aquaponicdesign.it">oltrelaterra@aquaponicdesign.it</a></p>
+      </div>
+    </div>
+  </div>
 
   <script src="./assets/main.js?v=3" defer></script>
 </body>

@@ -1856,3 +1856,145 @@ h3 {
   flex-wrap: wrap;
   gap: var(--sp-2);
 }
+/* ═══════════════════════════════════════════
+   LEGAL MODALS — Privacy & Cookie Policy
+   ═══════════════════════════════════════════ */
+
+.footer-legal-link {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: var(--font-body);
+}
+
+/* ── Backdrop + panel ── */
+.legal-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: flex-end;
+}
+@media (min-width: 640px) {
+  .legal-modal { align-items: center; justify-content: center; }
+}
+
+.legal-modal[hidden] { display: none; }
+
+.legal-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(28, 31, 29, 0.6);
+  backdrop-filter: blur(4px);
+}
+
+.legal-modal__panel {
+  position: relative;
+  z-index: 1;
+  background: var(--avorio);
+  color: var(--carbone);
+  width: 100%;
+  max-height: 90dvh;
+  overflow-y: auto;
+  border-radius: var(--r-card) var(--r-card) 0 0;
+  padding: var(--sp-6) var(--sp-4) var(--sp-8);
+}
+@media (min-width: 640px) {
+  .legal-modal__panel {
+    max-width: 680px;
+    max-height: 80dvh;
+    border-radius: var(--r-card);
+    padding: var(--sp-8) var(--sp-6);
+  }
+}
+
+/* ── Close button ── */
+.legal-modal__close {
+  position: sticky;
+  float: right;
+  top: 0;
+  background: var(--verde-bosco);
+  color: var(--avorio);
+  border: none;
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-bottom: var(--sp-2);
+}
+.legal-modal__close:focus-visible {
+  outline: 2px solid var(--verde-germoglio);
+  outline-offset: 2px;
+}
+
+/* ── Body typography ── */
+.legal-modal__body h2 {
+  font-family: var(--font-title);
+  font-size: clamp(1.4rem, 4vw, 1.8rem);
+  color: var(--verde-bosco);
+  margin-bottom: 0.25rem;
+}
+.legal-meta {
+  font-size: 0.8rem;
+  color: var(--verde-salvia);
+  margin-bottom: var(--sp-4);
+}
+.legal-modal__body h3 {
+  font-family: var(--font-title);
+  font-size: 1rem;
+  color: var(--verde-bosco);
+  margin-top: var(--sp-4);
+  margin-bottom: 0.4rem;
+  border-bottom: 1px solid var(--verde-salvia);
+  padding-bottom: 0.25rem;
+}
+.legal-modal__body p,
+.legal-modal__body li {
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: var(--carbone);
+}
+.legal-modal__body ul {
+  padding-left: 1.25rem;
+  margin-top: 0.5rem;
+}
+.legal-modal__body a {
+  color: var(--verde-bosco);
+  text-decoration: underline;
+}
+
+/* ── Cookie table ── */
+.cookie-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+  margin: var(--sp-2) 0 var(--sp-3);
+}
+.cookie-table th {
+  background: var(--verde-bosco);
+  color: var(--avorio);
+  padding: 0.4rem 0.6rem;
+  text-align: left;
+}
+.cookie-table td {
+  padding: 0.35rem 0.6rem;
+  border-bottom: 1px solid rgba(110, 143, 116, 0.3);
+}
+
+/* ── Inline link inside modal body ── */
+.legal-inline-link {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: inherit;
+  color: var(--verde-bosco);
+  text-decoration: underline;
+}
