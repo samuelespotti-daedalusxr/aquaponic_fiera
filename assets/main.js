@@ -517,4 +517,5 @@ if (signupForm && formFeedback) {
 
   document.getElementById('cookie-accept').addEventListener('click', () => dismiss(true));
   document.getElementById('cookie-reject').addEventListener('click', () => dismiss(false));
+  document.getElementById('cookie-close').addEventListener('click',  () => dismiss(false));
 })();
