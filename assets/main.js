@@ -216,258 +216,90 @@ if (signupForm && formFeedback) {
   });
 })();
 
-// ── 10. Swipe Gallery ───────────────────────────────────────
-(function initGallery() {
-  const stack     = document.getElementById('gallery-stack');
-  const dotsWrap  = document.getElementById('gallery-dots');
-  if (!stack || !dotsWrap) return;
+// ── 10. Slideshow Gallery ───────────────────────────────────
+(function initSlideshow() {
+  const track    = document.getElementById('slideshow-track');
+  const dotsWrap = document.getElementById('slideshow-dots');
+  const prevBtn  = document.getElementById('slideshow-prev');
+  const nextBtn  = document.getElementById('slideshow-next');
+  if (!track) return;
 
-  // Images: use real paths; if missing, CSS gradient placeholders are rendered
   const IMAGES = [
-    './assets/gallery/gallery-01.jpg',
-    './assets/gallery/gallery-02.jpg',
-    './assets/gallery/gallery-03.jpg',
-    './assets/gallery/gallery-04.jpg',
-    './assets/gallery/gallery-05.jpg',
-    './assets/gallery/gallery-06.jpg',
+    './assets/immagine_1.jpg',
+    './assets/immagine_2.jpg',
+    './assets/immagine_3.jpg',
+    './assets/immagine_4.jpg',
+    './assets/immagine_5.jpg',
+    './assets/immagine_6.jpg',
+    './assets/immagine_7.jpg',
   ];
 
-  const VISIBLE   = 4;     // number of stacked cards
-  const THRESHOLD = 90;    // px to trigger fly-away
-  const GRADIENTS = [      // fallback CSS gradients (placeholders)
-    'linear-gradient(135deg,#1F3D2B 0%,#6E8F74 100%)',
-    'linear-gradient(135deg,#6E8F74 0%,#B7D36B 100%)',
-    'linear-gradient(135deg,#B7D36B 0%,#1F3D2B 100%)',
-    'linear-gradient(135deg,#B86B4B 0%,#1F3D2B 100%)',
-    'linear-gradient(135deg,#1F3D2B 0%,#B86B4B 100%)',
-    'linear-gradient(135deg,#6E8F74 0%,#B86B4B 100%)',
-  ];
+  let current = 0;
+  let timer   = null;
 
-  let current = 0;         // index of top card in IMAGES
-  let dragging = false;
-  let startX = 0, startY = 0, dx = 0, dy = 0;
-  let topCard = null;
-  let dirLock = null;      // 'x' | 'y' | null — direction lock for touch
+  // Build slides
+  IMAGES.forEach((src, i) => {
+    const slide = document.createElement('div');
+    slide.className = 'slideshow-slide' + (i === 0 ? ' is-active' : '');
 
-  // ── helpers ──
-  function mod(i) {
-    return ((i % IMAGES.length) + IMAGES.length) % IMAGES.length;
-  }
+    const img = document.createElement('img');
+    img.src      = src;
+    img.alt      = `Le Serre dei Giardini — immagine ${i + 1}`;
+    img.loading  = i === 0 ? 'eager' : 'lazy';
+    img.draggable = false;
+    slide.appendChild(img);
+    track.appendChild(slide);
+  });
 
-  // Build / rebuild dots
+  // Dots
   function renderDots() {
+    if (!dotsWrap) return;
     dotsWrap.innerHTML = '';
     IMAGES.forEach((_, i) => {
       const btn = document.createElement('button');
-      btn.className = 'gallery-dot' + (i === mod(current) ? ' is-active' : '');
+      btn.className = 'slideshow-dot' + (i === current ? ' is-active' : '');
       btn.setAttribute('role', 'tab');
       btn.setAttribute('aria-label', `Immagine ${i + 1}`);
-      btn.setAttribute('aria-selected', String(i === mod(current)));
-      btn.addEventListener('click', () => {
-        current = i;
-        render();
-      });
+      btn.setAttribute('aria-selected', String(i === current));
+      btn.addEventListener('click', () => goTo(i));
       dotsWrap.appendChild(btn);
     });
   }
 
-  // Create a single card element
-  function makeCard(imgIndex, pos) {
-    const card = document.createElement('div');
-    card.className   = 'swipe-card';
-    card.dataset.pos = pos;
-
-    const img = new Image();
-    img.src = IMAGES[imgIndex];
-    img.alt = `Galleria immagine ${imgIndex + 1}`;
-    img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
-    img.draggable = false;
-
-    // On error: show gradient placeholder
-    img.onerror = () => {
-      card.style.background = GRADIENTS[imgIndex % GRADIENTS.length];
-    };
-
-    card.appendChild(img);
-    return card;
-  }
-
-  // Full render: clear stack, add VISIBLE cards
-  function render() {
-    stack.innerHTML = '';
-    for (let pos = VISIBLE - 1; pos >= 0; pos--) {
-      const idx  = mod(current + pos);
-      const card = makeCard(idx, pos);
-
-      // Apply static transform for pos > 0
-      if (pos > 0) {
-        card.style.transition = 'transform 0.35s cubic-bezier(0.16,1,0.3,1)';
-      }
-
-      stack.appendChild(card);
-    }
-
-    // Bind drag to top card (pos 0)
-    topCard = stack.querySelector('[data-pos="0"]');
-    if (topCard) bindDrag(topCard);
-
+  function goTo(index) {
+    const slides = track.querySelectorAll('.slideshow-slide');
+    slides[current].classList.remove('is-active');
+    current = (index + IMAGES.length) % IMAGES.length;
+    slides[current].classList.add('is-active');
     renderDots();
+    resetTimer();
   }
 
-  // ── Drag logic ──
-  function bindDrag(card) {
-    // Mouse
-    card.addEventListener('mousedown', onMouseDown, { passive: false });
-    // Touch — touchstart stays passive (no preventDefault needed on start)
-    card.addEventListener('touchstart', onTouchStart, { passive: true });
+  function resetTimer() {
+    clearInterval(timer);
+    timer = setInterval(() => goTo(current + 1), 4500);
   }
 
-  function onMouseDown(e) {
-    if (e.button !== 0) return;
-    e.preventDefault();
-    startX = e.clientX;
-    startY = e.clientY;
-    dx = dy = 0;
-    dragging = true;
-    topCard.style.transition = 'none';
-    document.addEventListener('mousemove', onMouseMove);
-    document.addEventListener('mouseup', onMouseUp);
+  if (prevBtn) prevBtn.addEventListener('click', () => goTo(current - 1));
+  if (nextBtn) nextBtn.addEventListener('click', () => goTo(current + 1));
+
+  // Pause on hover/focus
+  const slideshowEl = document.getElementById('slideshow');
+  if (slideshowEl) {
+    slideshowEl.addEventListener('mouseenter', () => clearInterval(timer));
+    slideshowEl.addEventListener('mouseleave', resetTimer);
   }
 
-  function onMouseMove(e) {
-    if (!dragging) return;
-    dx = e.clientX - startX;
-    dy = e.clientY - startY;
-    applyDrag(dx, dy);
-  }
+  // Touch swipe support
+  let touchStartX = 0;
+  track.addEventListener('touchstart', e => {
+    touchStartX = e.touches[0].clientX;
+  }, { passive: true });
+  track.addEventListener('touchend', e => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) goTo(current + (diff > 0 ? 1 : -1));
+  }, { passive: true });
 
-  function onMouseUp() {
-    dragging = false;
-    document.removeEventListener('mousemove', onMouseMove);
-    document.removeEventListener('mouseup', onMouseUp);
-    settle();
-  }
-
-  function onTouchStart(e) {
-    const t = e.touches[0];
-    startX = t.clientX;
-    startY = t.clientY;
-    dx = dy = 0;
-    dirLock = null;
-    dragging = true;
-    topCard.style.transition = 'none';
-    // passive: false on touchmove so we can call preventDefault() to block
-    // vertical page scroll when the user is swiping horizontally
-    topCard.addEventListener('touchmove', onTouchMove, { passive: false });
-    topCard.addEventListener('touchend',   onTouchEnd,  { once: true });
-    topCard.addEventListener('touchcancel', onTouchEnd, { once: true });
-  }
-
-  function onTouchMove(e) {
-    if (!dragging) return;
-    const t  = e.touches[0];
-    const cx = t.clientX - startX;
-    const cy = t.clientY - startY;
-
-    // Determine scroll-vs-swipe direction once per gesture (after 10px)
-    if (!dirLock) {
-      if (Math.abs(cx) > Math.abs(cy) && Math.abs(cx) > 10) {
-        dirLock = 'x'; // horizontal swipe — take control
-      } else if (Math.abs(cy) > Math.abs(cx) && Math.abs(cy) > 10) {
-        dirLock = 'y'; // vertical scroll — let page scroll naturally
-      }
-    }
-
-    if (dirLock === 'x') {
-      // Block page scroll so horizontal drag works cleanly
-      e.preventDefault();
-      dx = cx;
-      dy = cy;
-      applyDrag(dx, dy);
-    }
-    // dirLock === 'y': do nothing, browser handles the scroll
-  }
-
-  function onTouchEnd() {
-    dragging = false;
-    topCard.removeEventListener('touchmove',   onTouchMove);
-    topCard.removeEventListener('touchcancel', onTouchEnd);
-    if (dirLock === 'x') {
-      settle();
-    } else {
-      // Vertical scroll gesture: snap card back cleanly without fly-away
-      if (topCard) {
-        topCard.style.transition = 'transform 0.4s cubic-bezier(0.16,1,0.3,1)';
-        topCard.style.transform  = '';
-      }
-      dirLock = null;
-    }
-  }
-
-  // Apply drag transform to top card + promote card below in real time
-  function applyDrag(dx, dy) {
-    if (!topCard) return;
-    const rot = dx * 0.06;
-    topCard.style.transform = `translate(${dx}px, ${dy}px) rotate(${rot}deg)`;
-
-    // Progress 0..1 based on threshold
-    const progress = Math.min(Math.abs(dx) / THRESHOLD, 1);
-
-    // Animate card at pos=1 toward pos=0 transform
-    const card1 = stack.querySelector('[data-pos="1"]');
-    if (card1) {
-      const scale = 0.94 + (1 - 0.94) * progress;
-      const tY    = 18 - 18 * progress;
-      card1.style.transform = `scale(${scale}) translateY(${tY}px)`;
-    }
-  }
-
-  // Settle: fly-away or snap back
-  function settle() {
-    if (!topCard) return;
-    if (Math.abs(dx) >= THRESHOLD) {
-      flyAway(dx > 0 ? 1 : -1);
-    } else {
-      // Snap back
-      topCard.style.transition = 'transform 0.4s cubic-bezier(0.16,1,0.3,1)';
-      topCard.style.transform  = '';
-      // Reset card1 too
-      const card1 = stack.querySelector('[data-pos="1"]');
-      if (card1) {
-        card1.style.transition = 'transform 0.4s cubic-bezier(0.16,1,0.3,1)';
-        card1.style.transform  = 'scale(0.94) translateY(18px)';
-      }
-    }
-  }
-
-  function flyAway(dir) {
-    if (!topCard) return;
-    const rot = dir * 25;
-    const tx  = dir * (window.innerWidth + 300);
-    topCard.style.transition = 'transform 0.45s cubic-bezier(0.16,1,0.3,1), opacity 0.45s ease';
-    topCard.style.transform  = `translate(${tx}px, ${dy}px) rotate(${rot}deg)`;
-    topCard.style.opacity    = '0';
-
-    topCard.addEventListener('transitionend', () => {
-      current = mod(current + 1);
-      render();
-    }, { once: true });
-  }
-
-  // ── Keyboard navigation ──
-  stack.addEventListener('keydown', e => {
-    if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
-      e.preventDefault();
-      const dir = e.key === 'ArrowRight' ? 1 : -1;
-      if (dir === 1) {
-        current = mod(current + 1);
-      } else {
-        current = mod(current - 1);
-      }
-      render();
-    }
-  });
-
-  // ── Init ──
-  render();
+  renderDots();
+  resetTimer();
 })();
