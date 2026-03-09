@@ -1088,9 +1088,16 @@ h3 {
 /* ── Map section ── */
 /* ── Mappa inline (dentro section formats) ── */
 .map-inline-wrap {
-  margin-top: var(--sp-10);
-  padding-top: var(--sp-8);
+  margin-top: var(--sp-6);
+  padding-top: var(--sp-6);
   border-top: 1px solid rgba(110,143,116,0.18);
+}
+
+@media (min-width: 768px) {
+  .map-inline-wrap {
+    margin-top: var(--sp-10);
+    padding-top: var(--sp-8);
+  }
 }
 
 .map-inline-header {
@@ -1193,22 +1200,29 @@ h3 {
 
 /* hint per zoom */
 .map-lightbox-hint {
-  position: absolute;
-  bottom: var(--sp-3);
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(0,0,0,0.55);
-  color: #fff;
-  font-size: 0.72rem;
-  padding: 0.3rem 0.85rem;
-  border-radius: var(--r-pill);
-  pointer-events: none;
-  white-space: nowrap;
-  opacity: 1;
-  transition: opacity 1s ease 2s;
+  display: none;
 }
-.map-lightbox-hint.hide {
-  opacity: 0;
+
+@media (min-width: 768px) {
+  .map-lightbox-hint {
+    display: block;
+    position: absolute;
+    bottom: var(--sp-3);
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.55);
+    color: #fff;
+    font-size: 0.72rem;
+    padding: 0.3rem 0.85rem;
+    border-radius: var(--r-pill);
+    pointer-events: none;
+    white-space: nowrap;
+    opacity: 1;
+    transition: opacity 1s ease 2s;
+  }
+  .map-lightbox-hint.hide {
+    opacity: 0;
+  }
 }
 
 .map-lightbox-close {
