@@ -464,8 +464,12 @@ h3 {
     padding: 0.4rem 0.75rem;
   }
 
+  .nav-cta-secondary {
+    margin-left: 0.5rem;
+  }
+
   .nav-cta {
-    margin-left: 1rem;
+    margin-left: 0.5rem;
   }
 }
 
@@ -591,16 +595,7 @@ h3 {
 }
 
 .about-inner {
-  display: grid;
-  gap: var(--sp-8);
-}
-
-@media (min-width: 900px) {
-  .about-inner {
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    gap: var(--sp-10);
-  }
+  max-width: 760px;
 }
 
 .about-text h2 {
@@ -620,13 +615,6 @@ h3 {
 .about-text p {
   margin-bottom: var(--sp-2);
   color: var(--color-text);
-  max-width: 560px;
-}
-
-@media (max-width: 899px) {
-  .about-text p {
-    max-width: 100%;
-  }
 }
 
 .about-img-placeholder {
