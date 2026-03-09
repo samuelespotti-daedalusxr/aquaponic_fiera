@@ -303,3 +303,141 @@ if (signupForm && formFeedback) {
   renderDots();
   resetTimer();
 })();
+
+// ── 11. Map lightbox con zoom + pan ─────────────────────────
+(function initMapLightbox() {
+  const lightbox   = document.getElementById('map-lightbox');
+  const backdrop   = document.getElementById('map-lightbox-backdrop');
+  const closeBtn   = document.getElementById('map-lightbox-close');
+  const zoomBtn    = document.getElementById('map-zoom-btn');
+  const mapImg     = document.getElementById('map-img');
+  const lbImg      = lightbox && lightbox.querySelector('.map-lightbox-img');
+  const hint       = document.getElementById('map-lightbox-hint');
+  if (!lightbox) return;
+
+  function hideHint() {
+    if (hint) hint.classList.add('hide');
+  }
+
+  // ── zoom+pan state ──
+  let scale = 1, tx = 0, ty = 0;
+  let dragging = false, startX = 0, startY = 0;
+  // touch pinch
+  let lastDist = 0;
+
+  function applyTransform() {
+    lbImg.style.transform = `translate(${tx}px,${ty}px) scale(${scale})`;
+    lbImg.style.cursor = scale > 1 ? (dragging ? 'grabbing' : 'grab') : 'zoom-in';
+  }
+
+  function resetTransform() {
+    scale = 1; tx = 0; ty = 0;
+    lbImg.style.transition = 'transform .3s ease';
+    applyTransform();
+    setTimeout(() => { lbImg.style.transition = ''; }, 300);
+    // reset hint visibility for next open
+    if (hint) hint.classList.remove('hide');
+  }
+
+  function clampTranslate() {
+    // allow panning only when zoomed in
+    const maxShift = 500 * (scale - 1);
+    tx = Math.max(-maxShift, Math.min(maxShift, tx));
+    ty = Math.max(-maxShift, Math.min(maxShift, ty));
+  }
+
+  // wheel zoom
+  lbImg && lbImg.addEventListener('wheel', e => {
+    e.preventDefault();
+    hideHint();
+    const step = e.deltaY < 0 ? 0.25 : -0.25;
+    scale = Math.min(5, Math.max(1, scale + step));
+    if (scale === 1) { tx = 0; ty = 0; }
+    clampTranslate();
+    applyTransform();
+  }, { passive: false });
+
+  // drag to pan
+  lbImg && lbImg.addEventListener('mousedown', e => {
+    if (scale <= 1) return;
+    hideHint();
+    dragging = true;
+    startX = e.clientX - tx;
+    startY = e.clientY - ty;
+    applyTransform();
+  });
+  document.addEventListener('mousemove', e => {
+    if (!dragging) return;
+    tx = e.clientX - startX;
+    ty = e.clientY - startY;
+    clampTranslate();
+    applyTransform();
+  });
+  document.addEventListener('mouseup', () => {
+    dragging = false;
+    if (lbImg) applyTransform();
+  });
+
+  // touch drag+pinch
+  lbImg && lbImg.addEventListener('touchstart', e => {
+    if (e.touches.length === 1 && scale > 1) {
+      dragging = true;
+      startX = e.touches[0].clientX - tx;
+      startY = e.touches[0].clientY - ty;
+    }
+    if (e.touches.length === 2) {
+      lastDist = Math.hypot(
+        e.touches[0].clientX - e.touches[1].clientX,
+        e.touches[0].clientY - e.touches[1].clientY
+      );
+    }
+  }, { passive: true });
+  lbImg && lbImg.addEventListener('touchmove', e => {
+    e.preventDefault();
+    if (e.touches.length === 1 && dragging) {
+      tx = e.touches[0].clientX - startX;
+      ty = e.touches[0].clientY - startY;
+      clampTranslate();
+      applyTransform();
+    }
+    if (e.touches.length === 2) {
+      const dist = Math.hypot(
+        e.touches[0].clientX - e.touches[1].clientX,
+        e.touches[0].clientY - e.touches[1].clientY
+      );
+      scale = Math.min(5, Math.max(1, scale * (dist / lastDist)));
+      lastDist = dist;
+      if (scale === 1) { tx = 0; ty = 0; }
+      clampTranslate();
+      applyTransform();
+    }
+  }, { passive: false });
+  lbImg && lbImg.addEventListener('touchend', () => { dragging = false; });
+
+  // double-click to reset
+  lbImg && lbImg.addEventListener('dblclick', resetTransform);
+
+  // ── open / close ──
+  function openLightbox() {
+    resetTransform();
+    lightbox.hidden = false;
+    document.body.style.overflow = 'hidden';
+    closeBtn && closeBtn.focus();
+  }
+
+  function closeLightbox() {
+    resetTransform();
+    lightbox.hidden = true;
+    document.body.style.overflow = '';
+    zoomBtn && zoomBtn.focus();
+  }
+
+  if (zoomBtn) zoomBtn.addEventListener('click', openLightbox);
+  if (mapImg)  mapImg.addEventListener('click', openLightbox);
+  if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+  if (backdrop) backdrop.addEventListener('click', closeLightbox);
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && !lightbox.hidden) closeLightbox();
+  });
+})();
