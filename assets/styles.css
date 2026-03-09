@@ -1058,6 +1058,29 @@ h3 {
   align-items: center;
 }
 
+.pdf-btn-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.btn--dl-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--r-sm);
+  border: 1px solid rgba(110,143,116,0.35);
+  color: var(--color-primary);
+  background: transparent;
+  transition: background 0.18s, border-color 0.18s;
+  flex-shrink: 0;
+}
+.btn--dl-icon:hover {
+  background: rgba(110,143,116,0.1);
+  border-color: var(--color-primary);
+}
+
 .partner-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
