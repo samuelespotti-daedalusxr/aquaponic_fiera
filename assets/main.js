@@ -446,6 +446,8 @@ if (signupForm && formFeedback) {
    LEGAL MODALS — Privacy & Cookie Policy
    ═══════════════════════════════════════════ */
 (function () {
+  let lastTrigger = null;
+
   function openModal(id) {
     const modal = document.getElementById(id);
     if (!modal) return;
@@ -458,15 +460,16 @@ if (signupForm && formFeedback) {
   function closeModal(modal) {
     modal.hidden = true;
     document.body.style.overflow = '';
-    // Restituisci il focus al trigger che ha aperto il modal
-    const trigger = document.querySelector(`[data-modal="${modal.id}"]`);
-    if (trigger) trigger.focus();
+    if (lastTrigger) { lastTrigger.focus(); lastTrigger = null; }
   }
 
-  // Open via data-modal buttons (footer + inline links)
+  // Open via [data-modal] links/buttons — preventDefault per <a>
   document.addEventListener('click', e => {
     const trigger = e.target.closest('[data-modal]');
-    if (trigger) openModal(trigger.dataset.modal);
+    if (!trigger) return;
+    e.preventDefault();
+    lastTrigger = trigger;
+    openModal(trigger.dataset.modal);
   });
 
   // Close via X button
@@ -492,4 +495,26 @@ if (signupForm && formFeedback) {
       if (open) closeModal(open);
     }
   });
+})();
+
+/* ═══════════════════════════════════════════
+   COOKIE CONSENT BANNER
+   ═══════════════════════════════════════════ */
+(function () {
+  const STORAGE_KEY = 'olt_cookie_consent';
+  const banner = document.getElementById('cookie-banner');
+  if (!banner) return;
+
+  // Mostra banner solo se non è già stata espressa una scelta
+  if (!localStorage.getItem(STORAGE_KEY)) {
+    setTimeout(() => { banner.hidden = false; }, 600);
+  }
+
+  function dismiss(accepted) {
+    localStorage.setItem(STORAGE_KEY, accepted ? 'accepted' : 'rejected');
+    banner.hidden = true;
+  }
+
+  document.getElementById('cookie-accept').addEventListener('click', () => dismiss(true));
+  document.getElementById('cookie-reject').addEventListener('click', () => dismiss(false));
 })();
