@@ -121,13 +121,17 @@
     ══════════════════════════════════════════ -->
     <section class="hero" id="hero" aria-label="Sezione introduttiva OLTRE LA TERRA">
       <div class="hero-bg">
-        <!-- SOSTITUIRE: img con foto drone Le Serre dei Giardini, Bologna -->
-        <img
-          src="./assets/serre-giardini-bologna.jpg"
-          alt="Vista aerea de Le Serre dei Giardini, Bologna"
+        <video
           class="hero-img"
-          fetchpriority="high"
+          autoplay
+          loop
+          muted
+          playsinline
+          preload="auto"
+          aria-hidden="true"
         >
+          <source src="./assets/PROMO%20%20serra%20madre%2016-9%20_%20legg.mp4" type="video/mp4">
+        </video>
         <!-- Overlay Verde Bosco 55% -->
         <div class="hero-overlay" aria-hidden="true"></div>
       </div>
