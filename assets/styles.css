@@ -343,6 +343,7 @@ h3 {
   font-size: 0.7rem;
   color: var(--color-secondary);
   letter-spacing: 0.05em;
+  white-space: nowrap;
 }
 
 /* Mobile nav toggle */
@@ -445,6 +446,7 @@ h3 {
     gap: 0.25rem;
     background: transparent;
     inset: auto;
+    margin-left: 1.5rem;
     overflow: visible;
     /* Ripristina visibilità — sempre visibile su desktop */
     visibility: visible;
