@@ -462,6 +462,7 @@ h3 {
   .nav-link {
     font-size: 0.875rem;
     padding: 0.4rem 0.75rem;
+    white-space: nowrap;
   }
 
   .nav-cta-secondary {
