@@ -336,6 +336,7 @@ h3 {
   font-size: 1rem;
   color: var(--color-primary);
   letter-spacing: 0.04em;
+  white-space: nowrap;
 }
 
 .nav-brand-date {
